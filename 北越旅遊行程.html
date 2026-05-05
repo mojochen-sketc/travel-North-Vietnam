@@ -1,0 +1,1637 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>北越旅遊 2026 · 河內 × 沙壩 × 下龍灣</title>
+  <style>
+    :root {
+      --red:    #c0392b;
+      --gold:   #d4a017;
+      --ink:    #1a1a2e;
+      --mist:   #f4f1eb;
+      --white:  #ffffff;
+      --shadow: 0 4px 20px rgba(0,0,0,.12);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: "PingFang TC", "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+      background: var(--mist);
+      color: var(--ink);
+      line-height: 1.7;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      background: linear-gradient(135deg, #0d2b1f 0%, #1a4731 50%, #0f5c3c 100%);
+      color: var(--white);
+      text-align: center;
+      padding: 64px 24px 48px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+    .hero-badge {
+      display: inline-block;
+      background: var(--gold);
+      color: var(--ink);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      padding: 4px 14px;
+      border-radius: 20px;
+      margin-bottom: 16px;
+    }
+    .hero h1 {
+      font-size: clamp(28px, 5vw, 52px);
+      font-weight: 800;
+      letter-spacing: 4px;
+      margin-bottom: 12px;
+    }
+    .hero h1 span { color: var(--gold); }
+    .hero-sub { font-size: 16px; opacity: .75; letter-spacing: 1px; }
+    .hero-dates {
+      margin-top: 24px;
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .hero-dates span {
+      background: rgba(255,255,255,.1);
+      border: 1px solid rgba(255,255,255,.2);
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-size: 13px;
+    }
+
+    /* ── OVERVIEW CARDS ── */
+    .overview {
+      max-width: 960px;
+      margin: -32px auto 0;
+      padding: 0 16px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      position: relative;
+      z-index: 10;
+    }
+    .ov-card {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 20px 16px;
+      text-align: center;
+      box-shadow: var(--shadow);
+      border-top: 4px solid var(--gold);
+    }
+    .ov-card .icon { font-size: 28px; margin-bottom: 8px; }
+    .ov-card .label { font-size: 12px; color: #888; letter-spacing: 1px; }
+    .ov-card .value { font-size: 18px; font-weight: 700; margin-top: 4px; }
+
+    /* ── SECTION ── */
+    .section { max-width: 960px; margin: 48px auto; padding: 0 16px; }
+    .section-title {
+      text-align: center;
+      font-size: 13px;
+      letter-spacing: 3px;
+      color: #888;
+      text-transform: uppercase;
+      margin-bottom: 32px;
+    }
+
+    /* ── CITY BLOCK ── */
+    .city-block { margin-bottom: 48px; }
+    .city-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 24px;
+      padding-bottom: 16px;
+      border-bottom: 2px solid var(--gold);
+    }
+    .city-icon {
+      width: 56px; height: 56px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 24px;
+      flex-shrink: 0;
+    }
+    .city-hanoi  .city-icon { background: #d6eaf8; }
+    .city-sapa   .city-icon { background: #d5f5e3; }
+    .city-halong .city-icon { background: #d1f2eb; }
+    .city-header h2 { font-size: 24px; font-weight: 800; }
+    .city-header .city-days { font-size: 13px; color: #888; margin-top: 2px; }
+
+    /* ── DAY CARD ── */
+    .day-card {
+      background: var(--white);
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      margin-bottom: 16px;
+    }
+    .day-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 16px 20px;
+      cursor: pointer;
+      user-select: none;
+    }
+    .day-num {
+      width: 48px; height: 48px;
+      border-radius: 12px;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      font-weight: 800;
+      flex-shrink: 0;
+      color: var(--white);
+    }
+    .city-hanoi  .day-num { background: linear-gradient(135deg, #2471a3, #2980b9); }
+    .city-sapa   .day-num { background: linear-gradient(135deg, #1e8449, #27ae60); }
+    .city-halong .day-num { background: linear-gradient(135deg, #148f77, #17a589); }
+    .day-num .d-day { font-size: 11px; opacity: .85; }
+    .day-num .d-num { font-size: 22px; line-height: 1; }
+    .day-title { flex: 1; }
+    .day-title h3 { font-size: 17px; font-weight: 700; }
+    .day-title .day-date { font-size: 12px; color: #999; margin-top: 2px; }
+    .day-arrow { font-size: 18px; color: #bbb; transition: transform .3s; }
+    .day-card.open .day-arrow { transform: rotate(180deg); }
+    .day-body {
+      display: none;
+      padding: 0 20px 20px;
+      border-top: 1px solid #f0f0f0;
+    }
+    .day-card.open .day-body { display: block; }
+
+    /* ── LEAFLET MAP ── */
+    .day-map-wrap {
+      margin: 14px 0 0;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 2px 10px rgba(0,0,0,.12);
+      height: 250px;
+    }
+    .day-lmap { width: 100%; height: 100%; }
+
+    /* ── SPOTS LIST ── */
+    .spots-list { margin: 0 0 18px; }
+    .spots-list-title {
+      font-size: 11px;
+      font-weight: 700;
+      color: #4285f4;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 10px 0 6px;
+    }
+    .spot-chip {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 10px;
+      border-radius: 9px;
+      cursor: pointer;
+      border: 1.5px solid transparent;
+      margin-bottom: 5px;
+      transition: background .15s, border-color .15s;
+      background: #f8faff;
+    }
+    .spot-chip:hover  { background: #edf3ff; }
+    .spot-chip.active { background: #e8f0fe; border-color: #4285f4; }
+    .spot-chip.route-chip { border-style: dashed; color: #4285f4; }
+    .spot-chip.route-chip.active { background: #e8f0fe; border-color: #4285f4; border-style: solid; }
+    .spot-chip-emoji { font-size: 17px; flex-shrink: 0; width: 24px; text-align: center; }
+    .spot-chip-name  { flex: 1; font-size: 13px; font-weight: 500; color: #333; line-height: 1.3; }
+    .btn-nav {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: #4285f4;
+      color: #fff;
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+      white-space: nowrap;
+      flex-shrink: 0;
+      font-family: inherit;
+      transition: background .2s;
+    }
+    .btn-nav:hover { background: #2b6fd9; }
+
+    /* ── TIMELINE ── */
+    .timeline { position: relative; padding-left: 28px; margin-top: 12px; }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 6px; top: 8px; bottom: 8px;
+      width: 2px; background: #eee;
+    }
+    .tl-item { position: relative; margin-bottom: 16px; }
+    .tl-item::before {
+      content: '';
+      position: absolute;
+      left: -24px; top: 6px;
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: var(--gold);
+      border: 2px solid var(--white);
+      box-shadow: 0 0 0 2px var(--gold);
+    }
+    .tl-time  { font-size: 11px; font-weight: 700; color: var(--gold); letter-spacing: 1px; margin-bottom: 2px; }
+    .tl-title { font-size: 15px; font-weight: 600; }
+    .tl-desc  { font-size: 13px; color: #666; margin-top: 2px; }
+    .tl-tags  { margin-top: 6px; display: flex; flex-wrap: wrap; gap: 4px; }
+    .tag { font-size: 11px; padding: 2px 8px; border-radius: 10px; font-weight: 600; }
+    .tag-food      { background: #fff3cd; color: #856404; }
+    .tag-sight     { background: #d1ecf1; color: #0c5460; }
+    .tag-hotel     { background: #d4edda; color: #155724; }
+    .tag-transport { background: #f8d7da; color: #721c24; }
+    .tag-tip       { background: #e2d9f3; color: #5a3490; }
+    .tag-cost      { background: #e8f5e9; color: #1b5e20; font-weight: 700; }
+
+    /* ── HOTEL CARD ── */
+    .hotel-card {
+      background: linear-gradient(135deg, #f8f9fa, #fff);
+      border: 1px solid #e8e8e8;
+      border-radius: 12px;
+      padding: 16px;
+      margin-top: 16px;
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+    .hotel-icon { font-size: 28px; flex-shrink: 0; }
+    .hotel-name { font-size: 15px; font-weight: 700; }
+    .hotel-addr { font-size: 12px; color: #888; margin-top: 4px; }
+    .hotel-times { display: flex; gap: 12px; margin-top: 8px; flex-wrap: wrap; }
+    .hotel-time-item { font-size: 12px; }
+    .hotel-time-item strong { color: var(--red); }
+
+    /* ── TIPS BOX ── */
+    .tips-box {
+      background: #fffbf0;
+      border-left: 4px solid var(--gold);
+      border-radius: 0 8px 8px 0;
+      padding: 12px 16px;
+      margin-top: 16px;
+      font-size: 13px;
+      color: #5a4a00;
+    }
+    .tips-box strong { display: block; margin-bottom: 4px; }
+
+    /* ── FOOD GRID ── */
+    .food-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 10px;
+      margin-top: 12px;
+    }
+    .food-item {
+      background: #fff8ee;
+      border: 1px solid #fde8c0;
+      border-radius: 10px;
+      padding: 10px;
+      text-align: center;
+      font-size: 13px;
+    }
+    .food-item .food-emoji { font-size: 22px; display: block; margin-bottom: 4px; }
+    .food-item .food-name  { font-weight: 600; }
+    .food-item .food-desc  { font-size: 11px; color: #999; margin-top: 2px; }
+
+    /* ── NAV TABS ── */
+    .nav-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 32px;
+    }
+    .nav-tab {
+      padding: 8px 18px;
+      border-radius: 20px;
+      border: 2px solid transparent;
+      background: var(--white);
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all .2s;
+      box-shadow: 0 2px 8px rgba(0,0,0,.08);
+    }
+    .nav-tab:hover { transform: translateY(-1px); }
+    .nav-tab.hanoi    { border-color: #2980b9; color: #2980b9; }
+    .nav-tab.sapa     { border-color: #27ae60; color: #27ae60; }
+    .nav-tab.halong   { border-color: #17a589; color: #17a589; }
+    .nav-tab.cost     { border-color: #c0392b; color: #c0392b; }
+    .nav-tab.budget   { border-color: #8e44ad; color: #8e44ad; }
+    .nav-tab.checklist{ border-color: #e67e22; color: #e67e22; }
+
+    /* ── COST SECTION ── */
+    .cost-card {
+      border-radius: 12px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .cost-card .cost-label { font-size: 12px; color: #888; }
+    .cost-card .cost-sub   { font-size: 11px; color: #aaa; }
+    .cost-card .cost-amt   { font-size: 22px; font-weight: 800; margin-top: 4px; }
+    .cost-subtotal {
+      text-align: right;
+      font-size: 14px;
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 1px dashed #ddd;
+    }
+    .flight-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: linear-gradient(135deg, var(--red), #e74c3c);
+      color: white;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 700;
+      margin-top: 8px;
+    }
+
+    /* ── EXPENSE TRACKER ── */
+    .budget-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+    .budget-total-card {
+      background: linear-gradient(135deg, #4a1a6e, #8e44ad);
+      color: white;
+      border-radius: 14px;
+      padding: 18px 24px;
+      min-width: 200px;
+      text-align: center;
+    }
+    .budget-total-card .bt-label { font-size: 12px; opacity: .7; letter-spacing: 1px; }
+    .budget-total-card .bt-amt   { font-size: 36px; font-weight: 800; color: #f0d9ff; line-height: 1.2; }
+    .budget-total-card .bt-sub   { font-size: 11px; opacity: .6; margin-top: 4px; }
+    .budget-cat-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    .budget-cat-card {
+      background: var(--white);
+      border-radius: 12px;
+      padding: 12px 14px;
+      box-shadow: 0 2px 8px rgba(0,0,0,.07);
+      border-left: 4px solid #ccc;
+    }
+    .budget-cat-card .bcc-label { font-size: 12px; color: #888; }
+    .budget-cat-card .bcc-amt   { font-size: 16px; font-weight: 700; margin-top: 2px; }
+    .budget-form-card {
+      background: var(--white);
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+    .budget-form-title { font-size: 15px; font-weight: 700; margin-bottom: 14px; color: #8e44ad; }
+    .budget-form-grid {
+      display: grid;
+      grid-template-columns: 140px 1fr 120px 90px;
+      gap: 10px;
+      align-items: end;
+    }
+    .bf-group { display: flex; flex-direction: column; gap: 4px; }
+    .bf-group label { font-size: 11px; font-weight: 700; color: #888; letter-spacing: .5px; }
+    .bf-group input, .bf-group select {
+      border: 1.5px solid #e0e0e0;
+      border-radius: 8px;
+      padding: 8px 10px;
+      font-size: 13px;
+      font-family: inherit;
+      background: #fafafa;
+      transition: border-color .2s;
+      outline: none;
+    }
+    .bf-group input:focus, .bf-group select:focus { border-color: #8e44ad; background: #fff; }
+    .bf-row2 {
+      display: grid;
+      grid-template-columns: 1fr 80px;
+      gap: 10px;
+      margin-top: 10px;
+      align-items: end;
+    }
+    .btn-add {
+      background: #8e44ad;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 9px 18px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: inherit;
+      transition: background .2s;
+      width: 100%;
+    }
+    .btn-add:hover { background: #7d3c98; }
+    .expense-list-card {
+      background: var(--white);
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+    .expense-list-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 20px;
+      border-bottom: 1px solid #f0f0f0;
+    }
+    .expense-list-head h4 { font-size: 15px; font-weight: 700; }
+    .btn-clear-all {
+      background: none;
+      border: 1.5px solid #e0e0e0;
+      border-radius: 8px;
+      padding: 5px 12px;
+      font-size: 12px;
+      font-weight: 600;
+      color: #999;
+      cursor: pointer;
+      font-family: inherit;
+      transition: all .2s;
+    }
+    .btn-clear-all:hover { border-color: #e74c3c; color: #e74c3c; }
+    .expense-table-wrap { overflow-x: auto; }
+    .expense-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+    .expense-table th {
+      background: #fafafa;
+      padding: 10px 14px;
+      text-align: left;
+      font-size: 11px;
+      font-weight: 700;
+      color: #aaa;
+      letter-spacing: .5px;
+      border-bottom: 1px solid #f0f0f0;
+      white-space: nowrap;
+    }
+    .expense-table td {
+      padding: 11px 14px;
+      border-bottom: 1px solid #f8f8f8;
+      vertical-align: middle;
+    }
+    .expense-table tr:last-child td { border-bottom: none; }
+    .expense-table tr:hover td { background: #fdf9ff; }
+    .exp-cat-badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 8px;
+      font-size: 11px;
+      font-weight: 600;
+    }
+    .exp-amt { font-weight: 700; }
+    .exp-twd { font-size: 11px; color: #aaa; margin-top: 1px; }
+    .btn-del {
+      background: none;
+      border: none;
+      color: #ddd;
+      cursor: pointer;
+      font-size: 16px;
+      padding: 2px 6px;
+      border-radius: 6px;
+      transition: all .2s;
+      font-family: inherit;
+    }
+    .btn-del:hover { color: #e74c3c; background: #fff0f0; }
+    .empty-state {
+      text-align: center;
+      padding: 40px 20px;
+      color: #bbb;
+      font-size: 14px;
+    }
+    .empty-state div:first-child { font-size: 36px; margin-bottom: 8px; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--ink);
+      color: rgba(255,255,255,.5);
+      text-align: center;
+      padding: 24px;
+      font-size: 13px;
+      margin-top: 48px;
+    }
+    footer strong { color: var(--gold); }
+
+    @media (max-width: 640px) {
+      .hero h1 { letter-spacing: 2px; }
+      .city-header { flex-direction: column; text-align: center; }
+      .budget-form-grid { grid-template-columns: 1fr 1fr; }
+      .budget-header { flex-direction: column; }
+    }
+  </style>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-badge">✈ 2026 北越深度遊</div>
+  <h1>河內 <span>×</span> 沙壩 <span>×</span> 下龍灣</h1>
+  <p class="hero-sub">印度支那最高峰 · 千島石灰岩仙境 · 千年古都巷弄</p>
+  <div class="hero-dates">
+    <span>📅 2026 年 9 月 29 日 — 10 月 7 日</span>
+    <span>🌙 9 天 8 夜</span>
+    <span>👥 2 人同行</span>
+  </div>
+</div>
+
+<!-- OVERVIEW CARDS -->
+<div class="overview">
+  <div class="ov-card">
+    <div class="icon">✈️</div>
+    <div class="label">出發</div>
+    <div class="value">9/29 抵河內</div>
+    <div style="font-size:12px;color:#999;margin-top:2px;">夜臥火車出發沙壩</div>
+  </div>
+  <div class="ov-card">
+    <div class="icon">🏙️</div>
+    <div class="label">河內</div>
+    <div class="value">D1 + D4–D9</div>
+    <div style="font-size:12px;color:#999;margin-top:2px;">首尾古都 · 深度探索</div>
+  </div>
+  <div class="ov-card">
+    <div class="icon">🏔️</div>
+    <div class="label">沙壩</div>
+    <div class="value">D2 – D4</div>
+    <div style="font-size:12px;color:#999;margin-top:2px;">梯田 · 番西邦峰</div>
+  </div>
+  <div class="ov-card">
+    <div class="icon">🚢</div>
+    <div class="label">下龍灣</div>
+    <div class="value">D6 – D7</div>
+    <div style="font-size:12px;color:#999;margin-top:2px;">郵輪 · 石灰岩奇景</div>
+  </div>
+  <div class="ov-card">
+    <div class="icon">🛫</div>
+    <div class="label">返台</div>
+    <div class="value">10/7 D9</div>
+    <div style="font-size:12px;color:#999;margin-top:2px;">打包回家，旅程圓滿</div>
+  </div>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="section">
+  <p class="section-title">— 每日行程 —</p>
+
+  <div class="nav-tabs">
+    <button class="nav-tab hanoi"     onclick="jumpTo('hanoi')">🏙️ 河內首日</button>
+    <button class="nav-tab sapa"      onclick="jumpTo('sapa')">🏔️ 沙壩</button>
+    <button class="nav-tab halong"    onclick="jumpTo('halong')">🚢 河內 &amp; 下龍灣</button>
+    <button class="nav-tab cost"      onclick="jumpTo('cost')">💰 費用概算</button>
+    <button class="nav-tab budget"    onclick="jumpTo('budget')">📒 旅行記帳</button>
+    <button class="nav-tab checklist" onclick="jumpTo('checklist')">🎒 行前準備</button>
+  </div>
+
+  <!-- ════ 河內首日 ════ -->
+  <div class="city-block city-hanoi" id="hanoi">
+    <div class="city-header">
+      <div class="city-icon">🏙️</div>
+      <div>
+        <h2>河內 Hà Nội</h2>
+        <div class="city-days">9月29日 · 飛抵後直奔火車站，夜臥出發沙壩</div>
+      </div>
+    </div>
+
+    <div class="day-card open" data-day="0">
+      <div class="day-header" onclick="toggleDay(this)">
+        <div class="day-num"><span class="d-day">D</span><span class="d-num">1</span></div>
+        <div class="day-title">
+          <h3>抵達河內 → 夜臥火車出發沙壩</h3>
+          <div class="day-date">2026 年 9 月 29 日（二）</div>
+        </div>
+        <div class="day-arrow">▼</div>
+      </div>
+      <div class="day-body">
+        <div class="timeline">
+          <div class="tl-item">
+            <div class="tl-time">抵達</div>
+            <div class="tl-title">✈️ 抵達內排國際機場（Nội Bài）</div>
+            <div class="tl-desc">入境、提取行李，搭快巴 86 號或計程車前往河內市區（約 40–60 分鐘）</div>
+            <div class="tl-tags">
+              <span class="tag tag-transport">交通</span>
+              <span class="tag tag-tip">86 號機場快巴 → 還劍湖 約 VND 35,000</span>
+              <span class="tag tag-cost">計程車約 VND 250,000–350,000</span>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-time">下午</div>
+            <div class="tl-title">🏙️ 還劍湖漫步 &amp; 寄存行李</div>
+            <div class="tl-desc">在飯店寄存行李，輕裝前往還劍湖（Hồ Hoàn Kiếm）、玉山祠，感受河內舊城氛圍</div>
+            <div class="tl-tags"><span class="tag tag-sight">景點</span></div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-time">傍晚</div>
+            <div class="tl-title">🍜 河內特色晚餐</div>
+            <div class="tl-desc">品嚐正宗河內河粉（Phở Hà Nội）或烤豬肉米粉（Bún Chả），補充能量準備夜車旅程</div>
+            <div class="tl-tags"><span class="tag tag-food">美食</span></div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-time">21:00前</div>
+            <div class="tl-title">🚂 河內火車站（Ga Hà Nội）集合</div>
+            <div class="tl-desc">搭夜臥火車前往老街（Lào Cai），軟臥包廂，約 8 小時車程，隔日清晨抵達</div>
+            <div class="tl-tags">
+              <span class="tag tag-transport">夜臥火車</span>
+              <span class="tag tag-tip">河內 → 老街 約 8 小時</span>
+              <span class="tag tag-cost">軟臥約 VND 400,000–700,000／人</span>
+            </div>
+          </div>
+        </div>
+        <div class="tips-box">
+          <strong>💡 D1 小提示</strong>
+          火車票建議出發前 1–2 個月透過 12Go Asia 或 Vietnam Railways 官網預訂，旺季票源緊張。
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════ 沙壩 ════ -->
+  <div class="city-block city-sapa" id="sapa">
+    <div class="city-header">
+      <div class="city-icon">🏔️</div>
+      <div>
+        <h2>沙壩 Sa Pa</h2>
+        <div class="city-days">9月30日 – 10月2日 · 梯田健行 · 番西邦峰 · 少數民族文化</div>
+      </div>
+    </div>
+
+    <div class="day-card" data-day="1">
+      <div class="day-header" onclick="toggleDay(this)">
+        <div class="day-num"><span class="d-day">D</span><span class="d-num">2</span></div>
+        <div class="day-title">
+          <h3>沙壩第一天：抵達 &amp; 梯田健行</h3>
+          <div class="day-date">2026 年 9 月 30 日（三）· Mường Hoa 谷、少數民族村落</div>
+        </div>
+        <div class="day-arrow">▼</div>
+      </div>
+      <div class="day-body">
+        <div class="timeline">
+          <div class="tl-item">
+            <div class="tl-time">05:30</div>
+            <div class="tl-title">🚂 抵達老街（Lào Cai）車站</div>
+            <div class="tl-desc">夜車到站，搭接駁巴士或計程車前往沙壩山城（約 38 公里，45–60 分鐘）</div>
+            <div class="tl-tags">
+              <span class="tag tag-transport">交通</span>
+              <span class="tag tag-cost">接駁巴士約 VND 80,000；計程車約 VND 350,000</span>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-time">07:00</div>
+            <div class="tl-title">🏨 入住沙壩飯店 &amp; 早餐</div>
+            <div class="tl-desc">辦理入住（或寄存行李）、梳洗用餐，準備出發健行</div>
+            <div class="tl-tags"><span class="tag tag-hotel">住宿</span></div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-time">09:00</div>
+            <div class="tl-title">🌾 Mường Hoa 谷梯田健行</div>
+            <div class="tl-desc">沿木朗河谷走訪層層金色稻梯田，健行路線約 10–14 公里，九月底稻穗轉黃，景色最佳</div>
+            <div class="tl-tags">
+              <span class="tag tag-sight">自然景觀</span>
+              <span class="tag tag-tip">建議搭配當地導遊</span>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-time">14:00</div>
+            <div class="tl-title">🏘️ 貓貓村（Cát Cát）走訪</div>
+            <div class="tl-desc">拜訪黑苗族村落，了解傳統服飾、手工織品與生活文化</div>
+            <div class="tl-tags">
+              <span class="tag tag-sight">民俗文化</span>
+              <span class="tag tag-cost">門票約 VND 70,000</span>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-time">19:00</div>
+            <div class="tl-title">🔥 晚餐：烤肉與山城夜景</div>
+            <div class="tl-desc">在沙壩小餐館享用烤魚、烤肉串，夜間雲霧繚繞的山城別有風情</div>
+            <div class="tl-tags"><span class="tag tag-food">美食</span></div>
+          </div>
+        </div>
+        <div style="margin-top:16px;">
+          <strong style="font-size:14px;">🍽️ 沙壩必嚐美食</strong>
+          <div class="food-grid">
+            <div class="food-item"><span class="food-emoji">🎋</span><div class="food-name">竹筒飯</div><div class="food-desc">Cơm lam 山地風味</div></div>
+            <div class="food-item"><span class="food-emoji">🐖</span><div class="food-name">烤豬肉</div><div class="food-desc">苗族炭火烤肉</div></div>
+            <div class="food-item"><span class="food-emoji">🌿</span><div class="food-name">草本火鍋</div><div class="food-desc">Lẩu thảo mộc</div></div>
+            <div class="food-item"><span class="food-emoji">🍺</span><div class="food-name">米酒</div><div class="food-desc">少數民族釀製</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="day-card" data-day="2">
+      <div class="day-header" onclick="toggleDay(this)">
+        <div class="day-num"><span class="d-day">D</span><span class="d-num">3</span></div>
+        <div class="day-title">
+          <h3>沙壩第二天：番西邦峰</h3>
+          <div class="day-date">2026 年 10 月 1 日（四）· 印度支那最高峰，海拔 3,143m</div>
+        </div>
+        <div class="day-arrow">▼</div>
+      </div>
+      <div class="day-body">
+        <div class="timeline">
+          <div class="tl-item">
+            <div class="tl-time">08:00</div>
+            <div class="tl-title">🚠 番西邦峰纜車站</div>
+            <div class="tl-desc">搭乘全球最長三線纜車（Fansipan Legend），全程約 6 公里，攀升海拔約 1,400 公尺</div>
+            <div class="tl-tags">
+              <span class="tag tag-sight">世界紀錄纜車</span>
+              <span class="tag tag-cost">來回票約 VND 900,000–1,100,000／人</span>
+              <span class="tag tag-tip">建議早上出發，午後易起霧</span>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-time">09:30</div>
+            <div class="tl-title">🏔️ 登頂番西邦峰（3,143m）</div>
+            <div class="tl-desc">印度支那最高峰；天氣好時可眺望雲海翻騰，俯瞰沙壩山城與梯田全貌</div>
+            <div class="tl-tags">
+              <span class="tag tag-sight">印度支那最高峰</span>
+              <span class="tag tag-tip">頂峰氣溫低，帶薄外套；登頂需爬約 600 級石階</span>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-time">14:00</div>
+            <div class="tl-title">🌺 Ta Phin 村走訪</div>
+            <div class="tl-desc">紅瑤族傳統村落，以天然草藥浴聞名；可體驗足浴、欣賞精緻刺繡工藝</div>
+            <div class="tl-tags">
+              <span class="tag tag-sight">民俗體驗</span>
+              <span class="tag tag-cost">藥浴體驗約 VND 100,000–200,000</span>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-time">19:00</div>
+            <div class="tl-title">🫕 最後一頓山城晚餐</div>
+            <div class="tl-desc">品嚐草本火鍋或山豬肉料理，道別沙壩美好的山中時光</div>
+            <div class="tl-tags"><span class="tag tag-food">美食</span></div>
+          </div>
+        </div>
+        <div class="tips-box">
+          <strong>💡 番西邦峰小提示</strong>
+          10月初仍是雨季尾端，山頂雲霧較多，若天氣不佳可改為深度走訪附近村落。
+        </div>
+      </div>
+    </div>
+
+    <div class="day-card" data-day="3">
+      <div class="day-header" onclick="toggleDay(this)">
+        <div class="day-num"><span class="d-day">D</span><span class="d-num">4</span></div>
+        <div class="day-title">
+          <h3>沙壩返回河內</h3>
+          <div class="day-date">2026 年 10 月 2 日（五）· 夜臥火車或大巴，河內市區遊</div>
+        </div>
+        <div class="day-arrow">▼</div>
+      </div>
+      <div class="day-body">
+        <div class="timeline">
+          <div class="tl-item">
+            <div class="tl-time">08:00</div>
+            <div class="tl-title">🏨 退房 &amp; 最後晨景</div>
+            <div class="tl-desc">辦理退房，清晨的沙壩雲霧最美，在附近小徑欣賞最後的山城晨霧</div>
+            <div class="tl-tags"><span class="tag tag-hotel">退房</span></div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-time">09:00</div>
+            <div class="tl-title">🚌 沙壩 → 河內（豪華巴士）</div>
+            <div class="tl-desc">豪華巴士（Limousine Bus）約 4–5 小時直達，推薦 Sapa Express 或 Hung Thanh Bus</div>
+            <div class="tl-tags">
+              <span class="tag tag-transport">豪華巴士</span>
+              <span class="tag tag-cost">約 VND 250,000–350,000／人</span>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-time">14:00</div>
+            <div class="tl-title">🏙️ 抵達河內 · 入住飯店</div>
+            <div class="tl-desc">辦理入住，稍作休息，輕裝出發探索城市</div>
+            <div class="tl-tags"><span class="tag tag-hotel">入住</span></div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-time">15:30</div>
+            <div class="tl-title">🏛️ 還劍湖 &amp; 玉山祠</div>
+            <div class="tl-desc">漫步還劍湖，遊覽湖心島上的玉山祠，感受河內歷史核心地帶</div>
+            <div class="tl-tags">
+              <span class="tag tag-sight">景點</span>
+              <span class="tag tag-cost">玉山祠門票約 VND 30,000</span>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-time">18:30</div>
+            <div class="tl-title">🍺 塔希恩街（Tạ Hiện）夜生活</div>
+            <div class="tl-desc">河內最熱鬧的啤酒街，品嚐 Bia Hơi（現釀生啤）與街頭小吃</div>
+            <div class="tl-tags"><span class="tag tag-food">夜生活</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════ 河內深度 & 下龍灣 ════ -->
+  <div class="city-block city-halong" id="halong">
+    <div class="city-header">
+      <div class="city-icon">🚢</div>
+      <div>
+        <h2>河內深度 &amp; 下龍灣</h2>
+        <div class="city-days">10月3日 – 10月7日 · 歷史文化探索 · 石灰岩奇景郵輪</div>
+      </div>
+    </div>
+
+    <div class="day-card" data-day="4">
+      <div class="day-header" onclick="toggleDay(this)">
+        <div class="day-num"><span class="d-day">D</span><span class="d-num">5</span></div>
+        <div class="day-title">
+          <h3>河內深度遊</h3>
+          <div class="day-date">2026 年 10 月 3 日（六）· 歷史文化 &amp; 美食探索</div>
+        </div>
+        <div class="day-arrow">▼</div>
+      </div>
+      <div class="day-body">
+        <div class="timeline">
+          <div class="tl-item">
+            <div class="tl-time">07:00</div>
+            <div class="tl-title">🍜 早餐：河內河粉（Phở）</div>
+            <div class="tl-desc">在老城區小館吃一碗正宗河內河粉，清澈牛骨湯底是河內河粉的精髓</div>
+            <div class="tl-tags"><span class="tag tag-food">必吃早餐</span></div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-time">08:30</div>
+            <div class="tl-title">🕍 胡志明陵寢 &amp; 一柱廟</div>
+            <div class="tl-desc">參觀胡志明主席遺體陵寢（週一、週五不開放）；一柱廟是越南最具代表性的古建築之一</div>
+            <div class="tl-tags">
+              <span class="tag tag-sight">歷史景點</span>
+              <span class="tag tag-tip">需著莊重服裝；免費入場</span>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-time">10:30</div>
+            <div class="tl-title">🎓 文廟（Văn Miếu）</div>
+            <div class="tl-desc">越南第一所大學，建於 1070 年；81 座進士石碑列入 UNESCO 世界記憶遺產</div>
+            <div class="tl-tags">
+              <span class="tag tag-sight">世界記憶遺產</span>
+              <span class="tag tag-cost">門票約 VND 30,000</span>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-time">12:00</div>
+            <div class="tl-title">🥩 午餐：Bún Chả（烤豬肉米粉）</div>
+            <div class="tl-desc">河內最具代表性的午餐料理，炭火烤豬肉配米線與清甜魚露湯底</div>
+            <div class="tl-tags"><span class="tag tag-food">河內名物</span></div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-time">14:00</div>
+            <div class="tl-title">🏛️ 越南國家歷史博物館</div>
+            <div class="tl-desc">了解越南從史前、漢化時期、法屬殖民到現代的完整歷史脈絡</div>
+            <div class="tl-tags">
+              <span class="tag tag-sight">博物館</span>
+              <span class="tag tag-cost">門票約 VND 40,000</span>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-time">16:00</div>
+            <div class="tl-title">⛪ 聖若瑟主教座堂</div>
+            <div class="tl-desc">法屬殖民時期哥德式教堂（1886年），周邊是時髦咖啡館與精品小店聚集地</div>
+            <div class="tl-tags"><span class="tag tag-sight">歷史建築</span></div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-time">19:00</div>
+            <div class="tl-title">🎭 升龍水上木偶劇</div>
+            <div class="tl-desc">越南千年傳統表演藝術，在水中操偶演繹神話傳說</div>
+            <div class="tl-tags">
+              <span class="tag tag-sight">傳統藝術</span>
+              <span class="tag tag-cost">門票約 VND 100,000–200,000</span>
+              <span class="tag tag-tip">建議提前線上購票</span>
+            </div>
+          </div>
+        </div>
+        <div style="margin-top:16px;">
+          <strong style="font-size:14px;">🍽️ 河內必嚐美食</strong>
+          <div class="food-grid">
+            <div class="food-item"><span class="food-emoji">🍜</span><div class="food-name">Phở Hà Nội</div><div class="food-desc">清澈牛骨河粉</div></div>
+            <div class="food-item"><span class="food-emoji">🥩</span><div class="food-name">Bún Chả</div><div class="food-desc">烤豬肉米粉</div></div>
+            <div class="food-item"><span class="food-emoji">🥚</span><div class="food-name">Cà Phê Trứng</div><div class="food-desc">蛋黃咖啡</div></div>
+            <div class="food-item"><span class="food-emoji">🥖</span><div class="food-name">Bánh Mì</div><div class="food-desc">越南法棍夾心</div></div>
+            <div class="food-item"><span class="food-emoji">🌿</span><div class="food-name">Bún Bò</div><div class="food-desc">南部風味牛肉米線</div></div>
+            <div class="food-item"><span class="food-emoji">🍺</span><div class="food-name">Bia Hơi</div><div class="food-desc">越南現釀生啤</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="day-card" data-day="5">
+      <div class="day-header" onclick="toggleDay(this)">
+        <div class="day-num"><span class="d-day">D</span><span class="d-num">6</span></div>
+        <div class="day-title">
+          <h3>前往下龍灣 &amp; 登船</h3>
+          <div class="day-date">2026 年 10 月 4 日（日）· 郵輪出發，石灰岩奇景</div>
+        </div>
+        <div class="day-arrow">▼</div>
+      </div>
+      <div class="day-body">
+        <div class="timeline">
+          <div class="tl-item">
+            <div class="tl-time">07:30</div>
+            <div class="tl-title">🚌 河內出發 → 下龍灣</div>
+            <div class="tl-desc">搭乘郵輪公司接駁車前往下龍灣碼頭，車程約 3.5–4 小時</div>
+            <div class="tl-tags">
+              <span class="tag tag-transport">長途接駁</span>
+              <span class="tag tag-tip">多數郵輪行程含接送服務</span>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-time">11:30</div>
+            <div class="tl-title">🚢 登上下龍灣郵輪</div>
+            <div class="tl-desc">抵達碼頭辦理登船手續，開始 2 天 1 夜的海灣郵輪之旅</div>
+            <div class="tl-tags">
+              <span class="tag tag-hotel">郵輪住宿</span>
+              <span class="tag tag-tip">推薦：Paradise Elegance、Stellar Cruise</span>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-time">15:00</div>
+            <div class="tl-title">🧗 道高洞（Đầu Gỗ）鐘乳石洞探險</div>
+            <div class="tl-desc">下龍灣最大的鐘乳石洞穴，面積約 5,000 平方公尺，氣勢磅礴</div>
+            <div class="tl-tags"><span class="tag tag-sight">自然奇觀</span></div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-time">16:30</div>
+            <div class="tl-title">🚣 皮划艇穿越石灰岩海灣</div>
+            <div class="tl-desc">搭皮划艇穿越狹窄的岩洞水道，探索隱藏的內灣與紅樹林生態</div>
+            <div class="tl-tags"><span class="tag tag-sight">戶外活動</span></div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-time">18:30</div>
+            <div class="tl-title">🌅 日落海景晚宴</div>
+            <div class="tl-desc">在郵輪甲板觀賞下龍灣日落，享用蝦蟹魷魚等新鮮漁獲晚宴</div>
+            <div class="tl-tags"><span class="tag tag-food">郵輪晚宴</span></div>
+          </div>
+        </div>
+        <div class="tips-box">
+          <strong>💡 下龍灣郵輪挑選建議</strong>
+          推薦 2 天 1 夜（含接送）中高端郵輪行程（約 USD 120–200／人），含餐飲、划艇、洞穴導覽。提前 1–2 個月在 GetYourGuide 預訂。
+        </div>
+      </div>
+    </div>
+
+    <div class="day-card" data-day="6">
+      <div class="day-header" onclick="toggleDay(this)">
+        <div class="day-num"><span class="d-day">D</span><span class="d-num">7</span></div>
+        <div class="day-title">
+          <h3>下龍灣第二天 &amp; 返河內</h3>
+          <div class="day-date">2026 年 10 月 5 日（一）· 晨間活動後下午回河內</div>
+        </div>
+        <div class="day-arrow">▼</div>
+      </div>
+      <div class="day-body">
+        <div class="timeline">
+          <div class="tl-item">
+            <div class="tl-time">06:30</div>
+            <div class="tl-title">🌅 晨間太極 &amp; 下龍灣日出</div>
+            <div class="tl-desc">甲板太極課，欣賞薄霧中石灰岩島嶼在朝霞中的剪影</div>
+            <div class="tl-tags"><span class="tag tag-sight">晨間活動</span></div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-time">09:00</div>
+            <div class="tl-title">🏊 晨間游泳 &amp; 最後划艇</div>
+            <div class="tl-desc">在郵輪停泊的沙灘游泳，或浮潛探索海底珊瑚礁</div>
+            <div class="tl-tags"><span class="tag tag-sight">水上活動</span></div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-time">12:00</div>
+            <div class="tl-title">🚢 下船 · 返回河內</div>
+            <div class="tl-desc">辦理退船手續，搭接駁車返回河內，約 16:00 抵達</div>
+            <div class="tl-tags"><span class="tag tag-transport">返回河內</span></div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-time">18:30</div>
+            <div class="tl-title">🛒 舊城區採購伴手禮</div>
+            <div class="tl-desc">在董春市場或舊城區購買越南咖啡、刺繡品、漆器等特色紀念品</div>
+            <div class="tl-tags"><span class="tag tag-food">購物</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="day-card" data-day="7">
+      <div class="day-header" onclick="toggleDay(this)">
+        <div class="day-num"><span class="d-day">D</span><span class="d-num">8</span></div>
+        <div class="day-title">
+          <h3>河內最後一天</h3>
+          <div class="day-date">2026 年 10 月 6 日（二）· 收尾採購、輕鬆遊覽</div>
+        </div>
+        <div class="day-arrow">▼</div>
+      </div>
+      <div class="day-body">
+        <div class="timeline">
+          <div class="tl-item">
+            <div class="tl-time">08:00</div>
+            <div class="tl-title">☕ 西湖咖啡 &amp; 鎮國寺</div>
+            <div class="tl-desc">西湖（Hồ Tây）湖邊咖啡館清晨散步；鎮國寺是越南最古老的佛教寺廟</div>
+            <div class="tl-tags"><span class="tag tag-sight">景點</span></div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-time">10:00</div>
+            <div class="tl-title">🏺 越南民族學博物館</div>
+            <div class="tl-desc">戶外展示 54 個民族的傳統建築實體，室內有豐富民俗文物</div>
+            <div class="tl-tags">
+              <span class="tag tag-sight">博物館</span>
+              <span class="tag tag-cost">門票約 VND 40,000</span>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-time">14:00</div>
+            <div class="tl-title">🛍️ 收尾採購</div>
+            <div class="tl-desc">越南咖啡（G7、Trung Nguyên）、腰果、芒果乾等熱門伴手禮</div>
+            <div class="tl-tags"><span class="tag tag-food">伴手禮</span></div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-time">16:00</div>
+            <div class="tl-title">🌇 還劍湖黃昏 · 最後巡禮</div>
+            <div class="tl-desc">在夕陽餘暉下與河內道別，感受這座千年古都最後的溫度</div>
+            <div class="tl-tags"><span class="tag tag-sight">景觀</span></div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-time">19:00</div>
+            <div class="tl-title">🥂 餞別晚餐</div>
+            <div class="tl-desc">選一家舊城區的好餐廳，好好享受旅途最後一頓晚餐</div>
+            <div class="tl-tags"><span class="tag tag-food">美食</span></div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-time">21:00</div>
+            <div class="tl-title">🧳 整理行李 &amp; 早睡準備</div>
+            <div class="tl-desc">整理行李，確認護照、機票、貴重物品，明早早起前往機場</div>
+            <div class="tl-tags"><span class="tag tag-tip">重要提醒</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="day-card" data-day="8">
+      <div class="day-header" onclick="toggleDay(this)">
+        <div class="day-num"><span class="d-day">D</span><span class="d-num">9</span></div>
+        <div class="day-title">
+          <h3>返回台北</h3>
+          <div class="day-date">2026 年 10 月 7 日（三）· 打包回家，旅程圓滿</div>
+        </div>
+        <div class="day-arrow">▼</div>
+      </div>
+      <div class="day-body">
+        <div class="tips-box" style="background:#fff0f0;border-color:var(--red);color:#7a0000;">
+          <strong>⚠️ 重要：提前確認班機時間</strong>
+          建議提早 3 小時抵達內排機場；從市區搭 Grab 約 40–60 分鐘，視交通而定。
+        </div>
+        <div class="timeline" style="margin-top:16px;">
+          <div class="tl-item">
+            <div class="tl-time">早起</div>
+            <div class="tl-title">⏰ 出發前往機場</div>
+            <div class="tl-desc">叫 Grab 計程車前往內排國際機場</div>
+            <div class="tl-tags">
+              <span class="tag tag-transport">Grab</span>
+              <span class="tag tag-cost">約 VND 250,000–400,000</span>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-time">機場</div>
+            <div class="tl-title">✈️ 內排國際機場辦理登機</div>
+            <div class="tl-desc">值機、托運行李、安檢出境，記得兌換剩餘越南盾</div>
+            <div class="tl-tags"><span class="tag tag-transport">機場</span></div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-time">起飛</div>
+            <div class="tl-title">🛫 班機起飛 · 返回台灣</div>
+            <div class="tl-desc">帶著番西邦峰的雲霧、下龍灣的石灰岩倒影，踏上歸途</div>
+            <div class="tl-tags"><span class="tag tag-transport">回家</span></div>
+          </div>
+        </div>
+        <div style="text-align:center;margin-top:24px;padding:20px;">
+          <div style="font-size:48px;margin-bottom:12px;">🎉</div>
+          <div style="font-size:18px;font-weight:700;">旅程圓滿結束</div>
+          <div style="font-size:14px;color:#888;margin-top:8px;">河內 · 沙壩 · 下龍灣 · 9天8夜北越深度遊</div>
+          <div class="flight-badge" style="margin:16px auto 0;width:fit-content;">✈ 河內內排 → 台灣</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════ 費用概算 ════ -->
+  <div id="cost" style="background:var(--white);border-radius:16px;box-shadow:var(--shadow);padding:24px;margin-top:32px;">
+    <h3 style="font-size:18px;font-weight:800;margin-bottom:4px;">💰 費用概算</h3>
+    <p style="font-size:13px;color:#888;margin-bottom:20px;">已確認費用總覽（新台幣）· 2 人</p>
+
+    <div style="margin-bottom:24px;">
+      <div style="font-weight:700;color:#17a589;font-size:14px;margin-bottom:12px;">🏨 住宿費用</div>
+      <div style="background:#f8fffe;border:1.5px dashed #b2dfdb;border-radius:12px;padding:20px;text-align:center;color:#999;">
+        <div style="font-size:28px;margin-bottom:8px;">📝</div>
+        <div style="font-size:14px;font-weight:600;color:#bbb;">住宿費用待填入</div>
+        <div style="font-size:12px;color:#ccc;margin-top:4px;">可於下方「旅行記帳」分頁記錄各筆住宿支出</div>
+      </div>
+    </div>
+
+    <div style="margin-bottom:24px;">
+      <div style="font-weight:700;color:#e67e22;font-size:14px;margin-bottom:12px;">✈️ 機票費用（2人）</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px;">
+        <div class="cost-card" style="background:#fff8f0;border:1px solid #ffe0b2;">
+          <div class="cost-label">去程＋回程（來回 · 2人）</div>
+          <div class="cost-sub">台灣 ⇄ 河內 · NT$11,400 × 2</div>
+          <div class="cost-amt" style="color:#e67e22;">NT$ 22,800</div>
+        </div>
+      </div>
+      <div class="cost-subtotal" style="color:#e67e22;">
+        機票小計：<strong style="font-size:16px;">NT$ 22,800</strong>
+      </div>
+    </div>
+
+    <div style="background:linear-gradient(135deg,#0d2b1f,#0f5c3c);color:white;border-radius:14px;padding:24px;text-align:center;">
+      <div style="font-size:13px;opacity:.65;letter-spacing:2px;margin-bottom:10px;">✈ 目前已確認費用（2人）</div>
+      <div style="font-size:42px;font-weight:800;color:#d4a017;line-height:1;">NT$ 22,800</div>
+      <div style="margin-top:10px;font-size:12px;opacity:.55;">住宿 / 餐飲 / 景點等費用請於「旅行記帳」分頁持續記錄</div>
+    </div>
+  </div>
+
+  <!-- ════ 旅行記帳 ════ -->
+  <div id="budget" style="margin-top:32px;">
+    <div style="background:var(--white);border-radius:16px;box-shadow:var(--shadow);padding:24px 24px 20px;">
+      <div class="budget-header">
+        <div>
+          <h3 style="font-size:18px;font-weight:800;">📒 旅行記帳</h3>
+          <p style="font-size:13px;color:#888;margin-top:4px;">記錄每筆花費，自動換算台幣合計</p>
+        </div>
+        <div class="budget-total-card">
+          <div class="bt-label">旅遊總花費（TWD · 2人）</div>
+          <div class="bt-amt" id="grand-total">NT$ 22,800</div>
+          <div class="bt-sub">含機票 NT$22,800（2人）</div>
+        </div>
+      </div>
+      <div class="budget-cat-grid" id="cat-summary"></div>
+    </div>
+
+    <div class="budget-form-card" style="margin-top:16px;">
+      <div class="budget-form-title">＋ 新增花費</div>
+      <div class="budget-form-grid">
+        <div class="bf-group">
+          <label>日期</label>
+          <input type="date" id="inp-date" />
+        </div>
+        <div class="bf-group">
+          <label>說明</label>
+          <input type="text" id="inp-desc" placeholder="例：玉山祠門票" />
+        </div>
+        <div class="bf-group">
+          <label>金額</label>
+          <input type="number" id="inp-amt" placeholder="0" min="0" />
+        </div>
+        <div class="bf-group">
+          <label>幣別</label>
+          <select id="inp-cur">
+            <option value="VND">VND 越南盾</option>
+            <option value="TWD" selected>TWD 台幣</option>
+            <option value="USD">USD 美金</option>
+          </select>
+        </div>
+      </div>
+      <div class="bf-row2">
+        <div class="bf-group">
+          <label>類別</label>
+          <select id="inp-cat">
+            <option value="交通">🚌 交通</option>
+            <option value="住宿">🏨 住宿</option>
+            <option value="餐飲">🍜 餐飲</option>
+            <option value="景點">🎫 景點門票</option>
+            <option value="購物">🛍️ 購物</option>
+            <option value="郵輪">🚢 郵輪</option>
+            <option value="其他">📦 其他</option>
+          </select>
+        </div>
+        <div class="bf-group" style="justify-content:flex-end;">
+          <label>&nbsp;</label>
+          <button class="btn-add" onclick="addExpense()">＋ 新增</button>
+        </div>
+      </div>
+      <div id="form-error" style="font-size:12px;color:#e74c3c;margin-top:8px;display:none;"></div>
+    </div>
+
+    <div class="expense-list-card">
+      <div class="expense-list-head">
+        <h4>花費紀錄</h4>
+        <button class="btn-clear-all" onclick="clearAll()">清除全部</button>
+      </div>
+      <div class="expense-table-wrap">
+        <table class="expense-table">
+          <thead>
+            <tr>
+              <th>日期</th>
+              <th>類別</th>
+              <th>說明</th>
+              <th>金額</th>
+              <th>折合台幣</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="expense-tbody"></tbody>
+        </table>
+        <div id="empty-state" class="empty-state">
+          <div>📋</div>
+          <div>尚無花費紀錄，點擊上方新增第一筆</div>
+        </div>
+      </div>
+    </div>
+    <div style="margin-top:12px;font-size:12px;color:#bbb;text-align:right;padding-right:4px;">
+      換算匯率參考：1 TWD ≈ 810 VND · 1 USD ≈ 33 TWD
+    </div>
+  </div>
+
+  <!-- ════ 行前準備清單（置底） ════ -->
+  <div id="checklist" style="background:var(--white);border-radius:16px;box-shadow:var(--shadow);padding:24px;margin-top:32px;">
+    <h3 style="font-size:18px;font-weight:800;margin-bottom:20px;">🎒 行前準備清單</h3>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;">
+      <div>
+        <div style="font-weight:700;color:var(--red);margin-bottom:8px;font-size:14px;">📄 重要文件</div>
+        <ul style="list-style:none;font-size:13px;line-height:2.2;">
+          <li>☐ 護照（有效期 6 個月以上）</li>
+          <li>☐ 越南電子簽證（E-visa）</li>
+          <li>☐ 回台機票電子票</li>
+          <li>☐ 夜臥火車票（沙壩段）</li>
+          <li>☐ 飯店 &amp; 郵輪訂單截圖</li>
+          <li>☐ 旅遊保險保單</li>
+        </ul>
+      </div>
+      <div>
+        <div style="font-weight:700;color:var(--red);margin-bottom:8px;font-size:14px;">💳 金融準備</div>
+        <ul style="list-style:none;font-size:13px;line-height:2.2;">
+          <li>☐ 越南盾現金（VND）</li>
+          <li>☐ 美金備用（USD）</li>
+          <li>☐ 國際信用卡（VISA/MC）</li>
+          <li>☐ Grab App（越南版 Uber）</li>
+        </ul>
+      </div>
+      <div>
+        <div style="font-weight:700;color:var(--red);margin-bottom:8px;font-size:14px;">📱 手機 &amp; 網路</div>
+        <ul style="list-style:none;font-size:13px;line-height:2.2;">
+          <li>☐ 越南旅遊 SIM 卡（Viettel）</li>
+          <li>☐ Google Maps</li>
+          <li>☐ Grab App</li>
+          <li>☐ 12Go Asia App（火車訂票）</li>
+        </ul>
+      </div>
+      <div>
+        <div style="font-weight:700;color:var(--red);margin-bottom:8px;font-size:14px;">👜 行李建議</div>
+        <ul style="list-style:none;font-size:13px;line-height:2.2;">
+          <li>☐ 登山鞋（沙壩健行必備）</li>
+          <li>☐ 薄防風外套（沙壩夜間涼）</li>
+          <li>☐ 雨衣 / 折疊雨傘</li>
+          <li>☐ 防曬乳 &amp; 防蚊液</li>
+          <li>☐ 充電寶</li>
+          <li>☐ 暈船藥（下龍灣備用）</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div style="font-size:22px;margin-bottom:8px;">🌿</div>
+  <div><strong>2026 北越深度遊</strong> · 河內 × 沙壩 × 下龍灣</div>
+  <div style="margin-top:4px;">9月29日 – 10月7日 · 9天8夜 · 2人同行 · 願旅途平安順遂</div>
+</footer>
+
+<script>
+/* ══════════════════════════════════════
+   各天景點資料
+   ══════════════════════════════════════ */
+const DAY_SPOTS = [
+  // D1 河內首日
+  { zoom:13, spots:[
+    {e:'✈️', n:'內排國際機場（Nội Bài）',       lat:21.2187, lng:105.8037},
+    {e:'🏙️', n:'還劍湖（Hồ Hoàn Kiếm）',      lat:21.0285, lng:105.8542},
+    {e:'🚂', n:'河內火車站（Ga Hà Nội）',       lat:21.0245, lng:105.8418},
+  ]},
+  // D2 沙壩第一天
+  { zoom:13, spots:[
+    {e:'🚂', n:'老街火車站（Lào Cai）',          lat:22.4936, lng:103.9722},
+    {e:'🏔️', n:'沙壩山城（Sa Pa Town）',        lat:22.3364, lng:103.8438},
+    {e:'🌾', n:'Mường Hoa 谷梯田',               lat:22.3180, lng:103.8700},
+    {e:'🏘️', n:'貓貓村（Cát Cát Village）',     lat:22.3204, lng:103.8266},
+  ]},
+  // D3 番西邦峰
+  { zoom:12, spots:[
+    {e:'🚠', n:'番西邦峰纜車站（Fansipan Legend）', lat:22.3150, lng:103.8070},
+    {e:'🏔️', n:'番西邦峰山頂（3,143m）',         lat:22.3027, lng:103.7736},
+    {e:'🌺', n:'Ta Phin 村（紅瑤族）',            lat:22.3850, lng:103.8300},
+  ]},
+  // D4 返河內
+  { zoom:13, spots:[
+    {e:'🏔️', n:'沙壩山城（出發）',               lat:22.3364, lng:103.8438},
+    {e:'🏙️', n:'還劍湖（Hồ Hoàn Kiếm）',       lat:21.0285, lng:105.8542},
+    {e:'🍺', n:'塔希恩街（Tạ Hiện）',             lat:21.0340, lng:105.8520},
+  ]},
+  // D5 河內深度遊
+  { zoom:14, spots:[
+    {e:'🕍', n:'胡志明陵寢（Lăng Hồ Chí Minh）', lat:21.0366, lng:105.8349},
+    {e:'🎓', n:'文廟（Văn Miếu）',                lat:21.0276, lng:105.8360},
+    {e:'🏛️', n:'越南國家歷史博物館',               lat:21.0267, lng:105.8603},
+    {e:'⛪', n:'聖若瑟主教座堂',                    lat:21.0280, lng:105.8516},
+    {e:'🎭', n:'升龍水上木偶劇院',                  lat:21.0310, lng:105.8510},
+  ]},
+  // D6 下龍灣登船
+  { zoom:11, spots:[
+    {e:'🚌', n:'河內市區（出發）',                 lat:21.0285, lng:105.8542},
+    {e:'🚢', n:'下龍灣郵輪碼頭（Tuần Châu）',     lat:20.9547, lng:107.0668},
+    {e:'🏝️', n:'下龍灣海域（UNESCO 遺產）',       lat:20.9101, lng:107.1839},
+  ]},
+  // D7 下龍灣第二天
+  { zoom:11, spots:[
+    {e:'🌅', n:'下龍灣日出觀景',                    lat:20.9101, lng:107.1839},
+    {e:'🚢', n:'下龍灣碼頭（返程）',                lat:20.9547, lng:107.0668},
+    {e:'🛒', n:'董春市場（Chợ Đồng Xuân）',        lat:21.0388, lng:105.8481},
+  ]},
+  // D8 河內最後一天
+  { zoom:14, spots:[
+    {e:'⛪', n:'鎮國寺 & 西湖（Hồ Tây）',          lat:21.0567, lng:105.8320},
+    {e:'🏺', n:'越南民族學博物館',                   lat:21.0282, lng:105.8060},
+    {e:'🌇', n:'還劍湖黃昏漫步',                     lat:21.0285, lng:105.8542},
+  ]},
+  // D9 返台
+  { zoom:13, spots:[
+    {e:'🧳', n:'河內飯店（出發）',                   lat:21.0285, lng:105.8542},
+    {e:'✈️', n:'內排國際機場（Nội Bài）',           lat:21.2187, lng:105.8037},
+  ]},
+];
+
+/* ══════════════════════════════════════
+   Leaflet 地圖面板
+   ══════════════════════════════════════ */
+const _maps = {};
+
+function buildDayMapPanel(dayIdx) {
+  const card = document.querySelector(`.day-card[data-day="${dayIdx}"]`);
+  if (!card) return;
+  const body = card.querySelector('.day-body');
+  const data = DAY_SPOTS[dayIdx];
+  if (!data) return;
+
+  const { spots } = data;
+  const wrapper = document.createElement('div');
+  wrapper.innerHTML = `
+    <div class="day-map-wrap">
+      <div id="lmap-${dayIdx}" class="day-lmap"></div>
+    </div>
+    <div class="spots-list">
+      <div class="spots-list-title">📍 點擊景點聚焦地圖 · 按導航前往</div>
+      <div class="spot-chip route-chip active" onclick="showRoute(${dayIdx}, this)">
+        <span class="spot-chip-emoji">🗺️</span>
+        <span class="spot-chip-name">顯示完整路線</span>
+      </div>
+      ${spots.map(s => `
+        <div class="spot-chip"
+             onclick="focusSpot(${dayIdx}, ${s.lat}, ${s.lng}, this)">
+          <span class="spot-chip-emoji">${s.e}</span>
+          <span class="spot-chip-name">${s.n}</span>
+          <button class="btn-nav"
+                  onclick="event.stopPropagation(); navTo(${s.lat}, ${s.lng})">
+            🧭 導航
+          </button>
+        </div>
+      `).join('')}
+    </div>`;
+
+  body.insertBefore(wrapper, body.firstChild);
+}
+
+function initLeafletMap(dayIdx) {
+  if (_maps[dayIdx]) return;
+  const div = document.getElementById(`lmap-${dayIdx}`);
+  if (!div) return;
+
+  const { zoom, spots } = DAY_SPOTS[dayIdx];
+  const map = L.map(div, { scrollWheelZoom: true });
+  _maps[dayIdx] = map;
+
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+    maxZoom: 19
+  }).addTo(map);
+
+  const latlngs = spots.map(s => [s.lat, s.lng]);
+  if (spots.length > 1) {
+    L.polyline(latlngs, { color: '#4285f4', weight: 4, opacity: 0.85 }).addTo(map);
+  }
+
+  spots.forEach(s => {
+    const icon = L.divIcon({
+      className: '',
+      html: `<div style="background:#4285f4;color:#fff;border-radius:50%;width:30px;height:30px;display:flex;align-items:center;justify-content:center;font-size:16px;box-shadow:0 2px 6px rgba(0,0,0,.35)">${s.e}</div>`,
+      iconSize: [30, 30], iconAnchor: [15, 15], popupAnchor: [0, -18]
+    });
+    L.marker([s.lat, s.lng], { icon }).addTo(map).bindPopup(`
+      <div style="min-width:160px;font-family:sans-serif">
+        <div style="font-size:13px;font-weight:600;margin-bottom:8px">${s.e} ${s.n}</div>
+        <button onclick="navTo(${s.lat},${s.lng})"
+          style="background:#4285f4;color:#fff;border:none;padding:5px 0;border-radius:6px;cursor:pointer;font-size:12px;width:100%">
+          🧭 Google Maps 導航
+        </button>
+      </div>
+    `);
+  });
+
+  spots.length === 1
+    ? map.setView(latlngs[0], zoom)
+    : map.fitBounds(latlngs, { padding: [24, 24] });
+}
+
+function showRoute(dayIdx, el) {
+  const map = _maps[dayIdx];
+  if (map) {
+    const latlngs = DAY_SPOTS[dayIdx].spots.map(s => [s.lat, s.lng]);
+    latlngs.length === 1
+      ? map.setView(latlngs[0], DAY_SPOTS[dayIdx].zoom)
+      : map.fitBounds(latlngs, { padding: [24, 24] });
+  }
+  el.closest('.spots-list').querySelectorAll('.spot-chip')
+    .forEach(c => c.classList.remove('active'));
+  el.classList.add('active');
+}
+
+function focusSpot(dayIdx, lat, lng, el) {
+  const map = _maps[dayIdx];
+  if (map) map.setView([lat, lng], 15);
+  el.closest('.spots-list').querySelectorAll('.spot-chip')
+    .forEach(c => c.classList.remove('active'));
+  el.classList.add('active');
+}
+
+function navTo(lat, lng) {
+  window.open(
+    `https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}&travelmode=transit`,
+    '_blank'
+  );
+}
+
+/* ══════════════════════════════════════
+   開合行程卡片
+   ══════════════════════════════════════ */
+function toggleDay(header) {
+  const card = header.closest('.day-card');
+  card.classList.toggle('open');
+  if (card.classList.contains('open')) {
+    const idx = parseInt(card.dataset.day);
+    setTimeout(() => initLeafletMap(idx), 50);
+  }
+}
+
+function jumpTo(id) {
+  document.getElementById(id).scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+/* ══════════════════════════════════════
+   旅行記帳功能
+   ══════════════════════════════════════ */
+const STORAGE_KEY = 'vietnam2026_expenses';
+const FLIGHT_COST = 22800; // 2人機票（TWD）
+const RATE = { VND: 1/810, TWD: 1, USD: 33 };
+const CAT_STYLE = {
+  '交通': { bg:'#fde8c0', color:'#7d4f00' },
+  '住宿': { bg:'#d4edda', color:'#155724' },
+  '餐飲': { bg:'#fff3cd', color:'#856404' },
+  '景點': { bg:'#d1ecf1', color:'#0c5460' },
+  '購物': { bg:'#e2d9f3', color:'#5a3490' },
+  '郵輪': { bg:'#d0eeff', color:'#0a4f7a' },
+  '其他': { bg:'#f0f0f0', color:'#555'    },
+};
+const CAT_ICON = {
+  '交通':'🚌','住宿':'🏨','餐飲':'🍜','景點':'🎫','購物':'🛍️','郵輪':'🚢','其他':'📦'
+};
+
+function loadExpenses() {
+  try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || []; }
+  catch { return []; }
+}
+function saveExpenses(list) { localStorage.setItem(STORAGE_KEY, JSON.stringify(list)); }
+function toTWD(amt, cur) { return Math.round(amt * (RATE[cur] || 1)); }
+function fmtAmt(amt, cur) {
+  if (cur === 'VND') return amt.toLocaleString() + ' ₫';
+  if (cur === 'USD') return 'US$ ' + amt.toLocaleString();
+  return 'NT$ ' + amt.toLocaleString();
+}
+
+function addExpense() {
+  const errEl = document.getElementById('form-error');
+  errEl.style.display = 'none';
+  const date = document.getElementById('inp-date').value;
+  const desc = document.getElementById('inp-desc').value.trim();
+  const amt  = parseFloat(document.getElementById('inp-amt').value);
+  const cur  = document.getElementById('inp-cur').value;
+  const cat  = document.getElementById('inp-cat').value;
+  if (!date) { errEl.textContent = '請選擇日期'; errEl.style.display='block'; return; }
+  if (!desc) { errEl.textContent = '請輸入說明'; errEl.style.display='block'; return; }
+  if (!amt || amt <= 0) { errEl.textContent = '請輸入有效金額'; errEl.style.display='block'; return; }
+  const list = loadExpenses();
+  list.unshift({ id: Date.now(), date, desc, amt, cur, cat });
+  saveExpenses(list);
+  document.getElementById('inp-desc').value = '';
+  document.getElementById('inp-amt').value  = '';
+  renderExpenses();
+}
+
+function deleteExpense(id) {
+  saveExpenses(loadExpenses().filter(e => e.id !== id));
+  renderExpenses();
+}
+
+function clearAll() {
+  if (!confirm('確定要清除所有花費紀錄嗎？')) return;
+  saveExpenses([]);
+  renderExpenses();
+}
+
+function renderExpenses() {
+  const list = loadExpenses();
+  const tbody = document.getElementById('expense-tbody');
+  const emptyState = document.getElementById('empty-state');
+
+  if (list.length === 0) {
+    tbody.innerHTML = '';
+    emptyState.style.display = 'block';
+  } else {
+    emptyState.style.display = 'none';
+    tbody.innerHTML = list.map(e => {
+      const twd = toTWD(e.amt, e.cur);
+      const st  = CAT_STYLE[e.cat] || CAT_STYLE['其他'];
+      const showTwd = e.cur !== 'TWD';
+      return `<tr>
+        <td style="white-space:nowrap;color:#888;font-size:12px;">${e.date}</td>
+        <td><span class="exp-cat-badge" style="background:${st.bg};color:${st.color};">${CAT_ICON[e.cat]||''} ${e.cat}</span></td>
+        <td>${e.desc}</td>
+        <td><div class="exp-amt">${fmtAmt(e.amt, e.cur)}</div>${showTwd?`<div class="exp-twd">≈ NT$ ${twd.toLocaleString()}</div>`:''}</td>
+        <td style="font-weight:700;color:#8e44ad;">NT$ ${twd.toLocaleString()}</td>
+        <td><button class="btn-del" onclick="deleteExpense(${e.id})">✕</button></td>
+      </tr>`;
+    }).join('');
+  }
+
+  // 類別小計
+  const catTotals = {};
+  let expenseTotal = 0;
+  list.forEach(e => {
+    const twd = toTWD(e.amt, e.cur);
+    catTotals[e.cat] = (catTotals[e.cat] || 0) + twd;
+    expenseTotal += twd;
+  });
+
+  const catGrid = document.getElementById('cat-summary');
+  catGrid.innerHTML = Object.keys(catTotals).map(cat => {
+    const st = CAT_STYLE[cat] || CAT_STYLE['其他'];
+    return `<div class="budget-cat-card" style="border-left-color:${st.color}">
+      <div class="bcc-label">${CAT_ICON[cat]||''} ${cat}</div>
+      <div class="bcc-amt" style="color:${st.color};">NT$ ${catTotals[cat].toLocaleString()}</div>
+    </div>`;
+  }).join('');
+
+  document.getElementById('grand-total').textContent =
+    'NT$ ' + (expenseTotal + FLIGHT_COST).toLocaleString();
+}
+
+/* ══════════════════════════════════════
+   初始化
+   ══════════════════════════════════════ */
+document.addEventListener('DOMContentLoaded', () => {
+  // 建立所有天的地圖面板
+  for (let i = 0; i < DAY_SPOTS.length; i++) {
+    buildDayMapPanel(i);
+  }
+
+  // 立即初始化預設展開卡片的地圖（D1）
+  document.querySelectorAll('.day-card.open[data-day]').forEach(card => {
+    setTimeout(() => initLeafletMap(parseInt(card.dataset.day)), 50);
+  });
+
+  // 記帳：預設今天日期
+  const today = new Date().toISOString().split('T')[0];
+  document.getElementById('inp-date').value = today;
+
+  renderExpenses();
+});
+</script>
+</body>
+</html>
