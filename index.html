@@ -1133,6 +1133,18 @@
             <div class="tl-tags"><span class="tag tag-food">購物</span></div>
           </div>
         </div>
+        <div class="hotel-card">
+          <div class="hotel-icon">🏨</div>
+          <div>
+            <div class="hotel-name">JADE BOUTIQUE HOTEL（10/5–10/7）</div>
+            <div class="hotel-addr"><a href="https://maps.app.goo.gl/w9obuJSHgiyFnHSEA" target="_blank" rel="noopener">查看地圖位置</a></div>
+            <div class="hotel-times">
+              <div class="hotel-time-item"><strong>入住</strong> 10/5 · 2晚</div>
+              <div class="hotel-time-item"><strong>退房</strong> 10/7</div>
+              <div class="hotel-time-item"><strong>費用</strong> NT$ 3,318（2晚）</div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -1266,9 +1278,14 @@
           <div class="cost-sub"><a href="https://maps.app.goo.gl/icYMorfWRpDX29hu5" target="_blank" rel="noopener">查看地圖位置</a></div>
           <div class="cost-amt" style="color:#17a589;">NT$ 3,150</div>
         </div>
+        <div class="cost-card" style="background:#f0fff4;border:1px solid #b2dfdb;">
+          <div class="cost-label">JADE BOUTIQUE HOTEL（10/5–10/7 · 2晚 · 2人）</div>
+          <div class="cost-sub"><a href="https://maps.app.goo.gl/w9obuJSHgiyFnHSEA" target="_blank" rel="noopener">查看地圖位置</a></div>
+          <div class="cost-amt" style="color:#17a589;">NT$ 3,318</div>
+        </div>
       </div>
       <div class="cost-subtotal" style="color:#17a589;">
-        住宿小計：<strong style="font-size:16px;">NT$ 6,081</strong>
+        住宿小計：<strong style="font-size:16px;">NT$ 9,399</strong>
       </div>
     </div>
 
@@ -1326,7 +1343,7 @@
 
     <div style="background:linear-gradient(135deg,#0d2b1f,#0f5c3c);color:white;border-radius:14px;padding:24px;text-align:center;">
       <div style="font-size:13px;opacity:.65;letter-spacing:2px;margin-bottom:10px;">✈ 目前已確認費用（2人）</div>
-      <div style="font-size:42px;font-weight:800;color:#d4a017;line-height:1;">NT$ 39,972</div>
+      <div style="font-size:42px;font-weight:800;color:#d4a017;line-height:1;">NT$ 43,290</div>
       <div style="margin-top:10px;font-size:12px;opacity:.55;">餐飲 / 景點等費用請於「旅行記帳」分頁持續記錄</div>
     </div>
   </div>
@@ -1341,8 +1358,8 @@
         </div>
         <div class="budget-total-card">
           <div class="bt-label">旅遊總花費（TWD · 2人）</div>
-          <div class="bt-amt" id="grand-total">NT$ 39,972</div>
-          <div class="bt-sub">含機票 NT$22,800 + 交通 NT$3,189 + 住宿 NT$6,081 + 郵輪 NT$7,902</div>
+          <div class="bt-amt" id="grand-total">NT$ 43,290</div>
+          <div class="bt-sub">含機票 NT$22,800 + 交通 NT$3,189 + 住宿 NT$9,399 + 郵輪 NT$7,902</div>
         </div>
       </div>
       <div class="budget-cat-grid" id="cat-summary"></div>
@@ -1526,6 +1543,7 @@ const DAY_SPOTS = [
     {e:'🌅', n:'下龍灣日出觀景',                    lat:20.9101, lng:107.1839},
     {e:'🚢', n:'下龍灣碼頭（返程）',                lat:20.9547, lng:107.0668},
     {e:'🛒', n:'董春市場（Chợ Đồng Xuân）',        lat:21.0388, lng:105.8481},
+    {e:'🏨', n:'JADE BOUTIQUE HOTEL（住宿）',      lat:21.0297836, lng:105.8484811},
   ]},
   // D8 河內最後一天
   { zoom:14, spots:[
@@ -1669,7 +1687,7 @@ function jumpTo(id) {
    旅行記帳功能
    ══════════════════════════════════════ */
 const STORAGE_KEY = 'vietnam2026_expenses';
-const FLIGHT_COST = 39972; // 2人機票 NT$22,800 + 夜臥巴士(去) NT$947 + 夜臥巴士(回) NT$902 + 高鐵(彰化→桃園) NT$1,340 + Pistachio住宿 NT$2,045 + DE MONG SAPA住宿 NT$886 + Maison Julie Duong住宿 NT$3,150 + 下龍灣郵輪 NT$7,902
+const FLIGHT_COST = 43290; // 2人機票 NT$22,800 + 夜臥巴士(去) NT$947 + 夜臥巴士(回) NT$902 + 高鐵(彰化→桃園) NT$1,340 + Pistachio住宿 NT$2,045 + DE MONG SAPA住宿 NT$886 + Maison Julie Duong住宿 NT$3,150 + JADE BOUTIQUE HOTEL住宿 NT$3,318 + 下龍灣郵輪 NT$7,902
 const RATE = { VND: 1/810, TWD: 1, USD: 33 };
 const CAT_STYLE = {
   '交通': { bg:'#fde8c0', color:'#7d4f00' },
