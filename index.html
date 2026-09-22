@@ -1406,12 +1406,32 @@
         <div class="cost-amt" id="settle-each-share" style="color:#a1750b;">NT$ 0</div>
       </div>
     </div>
+
+    <div style="background:#fff8f0;border:1px solid #ffe0b2;border-radius:12px;padding:16px;margin-bottom:16px;">
+      <div style="font-weight:700;color:#e67e22;font-size:14px;margin-bottom:10px;">💵 700 美金零用現金水位</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:12px;text-align:center;">
+        <div>
+          <div style="font-size:11px;color:#999;">總額</div>
+          <div style="font-size:16px;font-weight:700;">US$ 700</div>
+        </div>
+        <div>
+          <div style="font-size:11px;color:#999;">已使用</div>
+          <div style="font-size:16px;font-weight:700;color:#c0392b;" id="cash-used">US$ 0.00</div>
+        </div>
+        <div>
+          <div style="font-size:11px;color:#999;">剩餘可用</div>
+          <div style="font-size:16px;font-weight:700;color:#1b8a5a;" id="cash-remain">US$ 700.00</div>
+        </div>
+      </div>
+      <div style="text-align:right;font-size:11px;color:#bbb;margin-top:8px;" id="cash-remain-twd">≈ NT$ 23,100</div>
+    </div>
+
     <div style="background:linear-gradient(135deg,#0d2b1f,#0f5c3c);color:white;border-radius:14px;padding:20px 24px;text-align:center;">
       <div style="font-size:13px;opacity:.65;letter-spacing:2px;margin-bottom:10px;">結算結果</div>
       <div id="settle-result" style="font-size:20px;font-weight:800;color:#d4a017;">—</div>
     </div>
     <div style="margin-top:12px;font-size:12px;color:#bbb;">
-      保險費用（各付 NT$648）不計入分帳；「旅行記帳」新增花費時請選擇實際付款人，會自動計入本結算。
+      保險費用（各付 NT$648）不計入分帳；DE MONG SAPA、Maison Julie Duong 已預先計入現金支出。「旅行記帳」新增花費時勾選「以700美金現金支付」，會自動計入現金水位。
     </div>
   </div>
 
@@ -1481,6 +1501,10 @@
           <button class="btn-add" onclick="addExpense()">＋ 新增</button>
         </div>
       </div>
+      <label style="display:flex;align-items:center;gap:6px;font-size:12px;color:#888;margin-top:10px;cursor:pointer;">
+        <input type="checkbox" id="inp-cash" style="width:15px;height:15px;" />
+        💵 此筆從隨身 700 美金現金支付
+      </label>
       <div id="form-error" style="font-size:12px;color:#e74c3c;margin-top:8px;display:none;"></div>
     </div>
 
@@ -1783,6 +1807,9 @@ const PAYER_STYLE = {
 // 已確認費用中，屬於「共同分攤」的部分（不含各付各的保險 NT$1,296）
 const FIXED_PAID_BY_GF = 2045 + 3318 + 22800; // Pistachio + JADE BOUTIQUE + 機票
 const FIXED_PAID_BY_ME = 886 + 3150 + 3189 + 7902; // DE MONG + Maison Julie + 交通 + 郵輪
+// 700 美金零用現金水位（DE MONG SAPA、Maison Julie Duong 已預先從此筆現金支出）
+const CASH_FUND_USD = 700;
+const FIXED_CASH_USED_TWD = 886 + 3150; // DE MONG SAPA + Maison Julie Duong
 
 function loadExpenses() {
   try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || []; }
@@ -1805,14 +1832,16 @@ function addExpense() {
   const cur  = document.getElementById('inp-cur').value;
   const cat  = document.getElementById('inp-cat').value;
   const payer = document.getElementById('inp-payer').value;
+  const cash  = document.getElementById('inp-cash').checked;
   if (!date) { errEl.textContent = '請選擇日期'; errEl.style.display='block'; return; }
   if (!desc) { errEl.textContent = '請輸入說明'; errEl.style.display='block'; return; }
   if (!amt || amt <= 0) { errEl.textContent = '請輸入有效金額'; errEl.style.display='block'; return; }
   const list = loadExpenses();
-  list.unshift({ id: Date.now(), date, desc, amt, cur, cat, payer });
+  list.unshift({ id: Date.now(), date, desc, amt, cur, cat, payer, cash });
   saveExpenses(list);
   document.getElementById('inp-desc').value = '';
   document.getElementById('inp-amt').value  = '';
+  document.getElementById('inp-cash').checked = false;
   renderExpenses();
 }
 
@@ -1846,7 +1875,7 @@ function renderExpenses() {
         <td style="white-space:nowrap;color:#888;font-size:12px;">${e.date}</td>
         <td><span class="exp-cat-badge" style="background:${st.bg};color:${st.color};">${CAT_ICON[e.cat]||''} ${e.cat}</span></td>
         <td>${e.desc}</td>
-        <td><span class="exp-cat-badge" style="background:${pst.bg};color:${pst.color};">${pst.icon} ${e.payer || '我'}</span></td>
+        <td><span class="exp-cat-badge" style="background:${pst.bg};color:${pst.color};">${pst.icon} ${e.payer || '我'}${e.cash ? ' 💵' : ''}</span></td>
         <td><div class="exp-amt">${fmtAmt(e.amt, e.cur)}</div>${showTwd?`<div class="exp-twd">≈ NT$ ${twd.toLocaleString()}</div>`:''}</td>
         <td style="font-weight:700;color:#8e44ad;">NT$ ${twd.toLocaleString()}</td>
         <td><button class="btn-del" onclick="deleteExpense(${e.id})">✕</button></td>
@@ -1902,6 +1931,20 @@ function updateSettlement(list) {
   } else {
     resultEl.textContent = `🧑 我需支付給 👧 女友　NT$ ${absDiff.toLocaleString()}`;
   }
+
+  let dynCashTWD = 0;
+  list.forEach(e => { if (e.cash) dynCashTWD += toTWD(e.amt, e.cur); });
+  const usedTWD   = FIXED_CASH_USED_TWD + dynCashTWD;
+  const usedUSD   = usedTWD / RATE.USD;
+  const remainUSD = CASH_FUND_USD - usedUSD;
+  const remainTWD = remainUSD * RATE.USD;
+
+  document.getElementById('cash-used').textContent = 'US$ ' + usedUSD.toFixed(2);
+  const remainEl = document.getElementById('cash-remain');
+  remainEl.textContent = 'US$ ' + remainUSD.toFixed(2);
+  remainEl.style.color = remainUSD < 0 ? '#c0392b' : '#1b8a5a';
+  document.getElementById('cash-remain-twd').textContent =
+    '≈ NT$ ' + Math.round(remainTWD).toLocaleString();
 }
 
 /* ══════════════════════════════════════
