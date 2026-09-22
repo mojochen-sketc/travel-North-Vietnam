@@ -1289,13 +1289,13 @@
           <div class="cost-label">DE MONG SAPA（10/1–10/2 · 1晚 · 2人）</div>
           <div class="cost-sub"><a href="https://maps.app.goo.gl/oKevRVht658WFKX3A" target="_blank" rel="noopener">查看地圖位置</a></div>
           <div class="cost-amt" style="color:#17a589;">NT$ 886</div>
-          <span class="payer-badge payer-me">🧑 我現場付現（VND，700美金零用金）</span>
+          <span class="payer-badge payer-me">🧑 我現場付現（VND，800美金零用金）</span>
         </div>
         <div class="cost-card" style="background:#f0fff4;border:1px solid #b2dfdb;">
           <div class="cost-label">Maison Julie Duong（10/2–10/4 · 2晚 · 2人）</div>
           <div class="cost-sub"><a href="https://maps.app.goo.gl/icYMorfWRpDX29hu5" target="_blank" rel="noopener">查看地圖位置</a></div>
           <div class="cost-amt" style="color:#17a589;">NT$ 3,150</div>
-          <span class="payer-badge payer-me">🧑 我現場付現（VND，700美金零用金）</span>
+          <span class="payer-badge payer-me">🧑 我現場付現（VND，800美金零用金）</span>
         </div>
         <div class="cost-card" style="background:#f0fff4;border:1px solid #b2dfdb;">
           <div class="cost-label">JADE BOUTIQUE HOTEL（10/5–10/7 · 2晚 · 2人）</div>
@@ -1408,11 +1408,11 @@
     </div>
 
     <div style="background:#fff8f0;border:1px solid #ffe0b2;border-radius:12px;padding:16px;margin-bottom:16px;">
-      <div style="font-weight:700;color:#e67e22;font-size:14px;margin-bottom:10px;">💵 700 美金零用現金水位</div>
+      <div style="font-weight:700;color:#e67e22;font-size:14px;margin-bottom:10px;">💵 800 美金零用現金水位</div>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:12px;text-align:center;">
         <div>
           <div style="font-size:11px;color:#999;">總額</div>
-          <div style="font-size:16px;font-weight:700;">US$ 700</div>
+          <div style="font-size:16px;font-weight:700;">US$ 800</div>
         </div>
         <div>
           <div style="font-size:11px;color:#999;">已使用</div>
@@ -1420,10 +1420,10 @@
         </div>
         <div>
           <div style="font-size:11px;color:#999;">剩餘可用</div>
-          <div style="font-size:16px;font-weight:700;color:#1b8a5a;" id="cash-remain">US$ 700.00</div>
+          <div style="font-size:16px;font-weight:700;color:#1b8a5a;" id="cash-remain">US$ 800.00</div>
         </div>
       </div>
-      <div style="text-align:right;font-size:11px;color:#bbb;margin-top:8px;" id="cash-remain-twd">≈ NT$ 23,100</div>
+      <div style="text-align:right;font-size:11px;color:#bbb;margin-top:8px;" id="cash-remain-twd">≈ NT$ 26,400</div>
     </div>
 
     <div style="background:linear-gradient(135deg,#0d2b1f,#0f5c3c);color:white;border-radius:14px;padding:20px 24px;text-align:center;">
@@ -1431,7 +1431,7 @@
       <div id="settle-result" style="font-size:20px;font-weight:800;color:#d4a017;">—</div>
     </div>
     <div style="margin-top:12px;font-size:12px;color:#bbb;">
-      保險費用（各付 NT$648）不計入分帳；DE MONG SAPA、Maison Julie Duong 已預先計入現金支出。「旅行記帳」新增花費時勾選「以700美金現金支付」，會自動計入現金水位。
+      保險費用（各付 NT$648）不計入分帳；DE MONG SAPA、Maison Julie Duong 已預先計入現金支出。「旅行記帳」新增花費時勾選「以800美金現金支付」，會自動計入現金水位。
     </div>
   </div>
 
@@ -1503,7 +1503,7 @@
       </div>
       <label style="display:flex;align-items:center;gap:6px;font-size:12px;color:#888;margin-top:10px;cursor:pointer;">
         <input type="checkbox" id="inp-cash" style="width:15px;height:15px;" />
-        💵 此筆從隨身 700 美金現金支付
+        💵 此筆從隨身 800 美金現金支付
       </label>
       <div id="form-error" style="font-size:12px;color:#e74c3c;margin-top:8px;display:none;"></div>
     </div>
@@ -1807,8 +1807,8 @@ const PAYER_STYLE = {
 // 已確認費用中，屬於「共同分攤」的部分（不含各付各的保險 NT$1,296）
 const FIXED_PAID_BY_GF = 2045 + 3318 + 22800; // Pistachio + JADE BOUTIQUE + 機票
 const FIXED_PAID_BY_ME = 886 + 3150 + 3189 + 7902; // DE MONG + Maison Julie + 交通 + 郵輪
-// 700 美金零用現金水位（DE MONG SAPA、Maison Julie Duong 已預先從此筆現金支出）
-const CASH_FUND_USD = 700;
+// 800 美金零用現金水位（DE MONG SAPA、Maison Julie Duong 已預先從此筆現金支出）
+const CASH_FUND_USD = 800;
 const FIXED_CASH_USED_TWD = 886 + 3150; // DE MONG SAPA + Maison Julie Duong
 
 function loadExpenses() {
