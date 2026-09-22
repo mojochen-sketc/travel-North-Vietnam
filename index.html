@@ -329,6 +329,7 @@
     .nav-tab.sapa     { border-color: #27ae60; color: #27ae60; }
     .nav-tab.halong   { border-color: #17a589; color: #17a589; }
     .nav-tab.cost     { border-color: #c0392b; color: #c0392b; }
+    .nav-tab.settle   { border-color: #117864; color: #117864; }
     .nav-tab.budget   { border-color: #8e44ad; color: #8e44ad; }
     .nav-tab.checklist{ border-color: #e67e22; color: #e67e22; }
 
@@ -362,6 +363,18 @@
       font-weight: 700;
       margin-top: 8px;
     }
+    .payer-badge {
+      display: inline-block;
+      margin-top: 8px;
+      padding: 3px 10px;
+      border-radius: 12px;
+      font-size: 11px;
+      font-weight: 700;
+      width: fit-content;
+    }
+    .payer-me   { background: #eaf2fb; color: #2471a3; }
+    .payer-gf   { background: #f8f0ff; color: #8e44ad; }
+    .payer-split{ background: #f0f0f0; color: #666; }
 
     /* ── EXPENSE TRACKER ── */
     .budget-header {
@@ -427,7 +440,7 @@
     .bf-group input:focus, .bf-group select:focus { border-color: #8e44ad; background: #fff; }
     .bf-row2 {
       display: grid;
-      grid-template-columns: 1fr 80px;
+      grid-template-columns: 1fr 110px 90px;
       gap: 10px;
       margin-top: 10px;
       align-items: end;
@@ -541,6 +554,8 @@
       .hero h1 { letter-spacing: 2px; }
       .city-header { flex-direction: column; text-align: center; }
       .budget-form-grid { grid-template-columns: 1fr 1fr; }
+      .bf-row2 { grid-template-columns: 1fr 1fr; }
+      .bf-row2 .btn-add { width: auto; }
       .budget-header { flex-direction: column; }
     }
   </style>
@@ -604,6 +619,7 @@
     <button class="nav-tab sapa"      onclick="jumpTo('sapa')">🏔️ 沙壩</button>
     <button class="nav-tab halong"    onclick="jumpTo('halong')">🚢 河內 &amp; 下龍灣</button>
     <button class="nav-tab cost"      onclick="jumpTo('cost')">💰 費用概算</button>
+    <button class="nav-tab settle"    onclick="jumpTo('settle')">💵 分帳結算</button>
     <button class="nav-tab budget"    onclick="jumpTo('budget')">📒 旅行記帳</button>
     <button class="nav-tab checklist" onclick="jumpTo('checklist')">🎒 行前準備</button>
   </div>
@@ -1267,21 +1283,25 @@
           <div class="cost-label">Pistachio Hotel Sapa（9/30 · 1晚 · 2人）</div>
           <div class="cost-sub">1間客房 NT$ 1,893 ＋ 8% 加值稅 NT$ 152</div>
           <div class="cost-amt" style="color:#17a589;">NT$ 2,045</div>
+          <span class="payer-badge payer-gf">👧 女友已付</span>
         </div>
         <div class="cost-card" style="background:#f0fff4;border:1px solid #b2dfdb;">
           <div class="cost-label">DE MONG SAPA（10/1–10/2 · 1晚 · 2人）</div>
           <div class="cost-sub"><a href="https://maps.app.goo.gl/oKevRVht658WFKX3A" target="_blank" rel="noopener">查看地圖位置</a></div>
           <div class="cost-amt" style="color:#17a589;">NT$ 886</div>
+          <span class="payer-badge payer-me">🧑 我現場付現（VND，700美金零用金）</span>
         </div>
         <div class="cost-card" style="background:#f0fff4;border:1px solid #b2dfdb;">
           <div class="cost-label">Maison Julie Duong（10/2–10/4 · 2晚 · 2人）</div>
           <div class="cost-sub"><a href="https://maps.app.goo.gl/icYMorfWRpDX29hu5" target="_blank" rel="noopener">查看地圖位置</a></div>
           <div class="cost-amt" style="color:#17a589;">NT$ 3,150</div>
+          <span class="payer-badge payer-me">🧑 我現場付現（VND，700美金零用金）</span>
         </div>
         <div class="cost-card" style="background:#f0fff4;border:1px solid #b2dfdb;">
           <div class="cost-label">JADE BOUTIQUE HOTEL（10/5–10/7 · 2晚 · 2人）</div>
           <div class="cost-sub"><a href="https://maps.app.goo.gl/w9obuJSHgiyFnHSEA" target="_blank" rel="noopener">查看地圖位置</a></div>
           <div class="cost-amt" style="color:#17a589;">NT$ 3,318</div>
+          <span class="payer-badge payer-gf">👧 女友屆時刷卡</span>
         </div>
       </div>
       <div class="cost-subtotal" style="color:#17a589;">
@@ -1296,6 +1316,7 @@
           <div class="cost-label">去程＋回程（來回 · 2人）</div>
           <div class="cost-sub">台灣 ⇄ 河內 · NT$11,400 × 2</div>
           <div class="cost-amt" style="color:#e67e22;">NT$ 22,800</div>
+          <span class="payer-badge payer-gf">👧 女友已付</span>
         </div>
       </div>
       <div class="cost-subtotal" style="color:#e67e22;">
@@ -1310,16 +1331,19 @@
           <div class="cost-label">夜臥巴士（河內機場 → 沙壩 · 2人）</div>
           <div class="cost-sub">HK Buslines · 訂單 WTA892822</div>
           <div class="cost-amt" style="color:#2980b9;">NT$ 947</div>
+          <span class="payer-badge payer-me">🧑 我已付</span>
         </div>
         <div class="cost-card" style="background:#f0f8ff;border:1px solid #bde0f7;">
           <div class="cost-label">回程夜臥巴士（沙壩 → 河內 · 2人）</div>
           <div class="cost-sub">10/2 10:00 出發</div>
           <div class="cost-amt" style="color:#2980b9;">NT$ 902</div>
+          <span class="payer-badge payer-me">🧑 我已付</span>
         </div>
         <div class="cost-card" style="background:#f0f8ff;border:1px solid #bde0f7;">
           <div class="cost-label">台灣高鐵（彰化 → 桃園 · 2人）</div>
           <div class="cost-sub">出發前往機場</div>
           <div class="cost-amt" style="color:#2980b9;">NT$ 1,340</div>
+          <span class="payer-badge payer-me">🧑 我已付</span>
         </div>
       </div>
       <div class="cost-subtotal" style="color:#2980b9;">
@@ -1334,6 +1358,7 @@
           <div class="cost-label">Amanda Cruise 下龍灣 2天1夜郵輪（河內出發 · 2人）</div>
           <div class="cost-sub">Klook 預訂</div>
           <div class="cost-amt" style="color:#117864;">NT$ 7,902</div>
+          <span class="payer-badge payer-me">🧑 我已付</span>
         </div>
       </div>
       <div class="cost-subtotal" style="color:#117864;">
@@ -1348,6 +1373,7 @@
           <div class="cost-label">旅遊平安險（2人）</div>
           <div class="cost-sub">NT$ 648／人 × 2人</div>
           <div class="cost-amt" style="color:#8e44ad;">NT$ 1,296</div>
+          <span class="payer-badge payer-split">🤝 各付各的（不列入分帳）</span>
         </div>
       </div>
       <div class="cost-subtotal" style="color:#8e44ad;">
@@ -1359,6 +1385,33 @@
       <div style="font-size:13px;opacity:.65;letter-spacing:2px;margin-bottom:10px;">✈ 目前已確認費用（2人）</div>
       <div style="font-size:42px;font-weight:800;color:#d4a017;line-height:1;">NT$ 44,586</div>
       <div style="margin-top:10px;font-size:12px;opacity:.55;">餐飲 / 景點等費用請於「旅行記帳」分頁持續記錄</div>
+    </div>
+  </div>
+
+  <!-- ════ 分帳結算 ════ -->
+  <div id="settle" style="background:var(--white);border-radius:16px;box-shadow:var(--shadow);padding:24px;margin-top:32px;">
+    <h3 style="font-size:18px;font-weight:800;margin-bottom:4px;">💵 分帳結算</h3>
+    <p style="font-size:13px;color:#888;margin-bottom:20px;">已確認費用 + 旅行記帳全部平均分攤（保險各付各的，不列入分帳），自動算出誰該付誰多少</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:16px;">
+      <div class="cost-card" style="background:#eaf2fb;border:1px solid #bcd6ef;">
+        <div class="cost-label">🧑 我已支付合計</div>
+        <div class="cost-amt" id="settle-me-paid" style="color:#2471a3;">NT$ 0</div>
+      </div>
+      <div class="cost-card" style="background:#f8f0ff;border:1px solid #e0c6f5;">
+        <div class="cost-label">👧 女友已支付合計</div>
+        <div class="cost-amt" id="settle-gf-paid" style="color:#8e44ad;">NT$ 0</div>
+      </div>
+      <div class="cost-card" style="background:#fdf6e3;border:1px solid #f0dfa0;">
+        <div class="cost-label">應平均分攤（每人）</div>
+        <div class="cost-amt" id="settle-each-share" style="color:#a1750b;">NT$ 0</div>
+      </div>
+    </div>
+    <div style="background:linear-gradient(135deg,#0d2b1f,#0f5c3c);color:white;border-radius:14px;padding:20px 24px;text-align:center;">
+      <div style="font-size:13px;opacity:.65;letter-spacing:2px;margin-bottom:10px;">結算結果</div>
+      <div id="settle-result" style="font-size:20px;font-weight:800;color:#d4a017;">—</div>
+    </div>
+    <div style="margin-top:12px;font-size:12px;color:#bbb;">
+      保險費用（各付 NT$648）不計入分帳；「旅行記帳」新增花費時請選擇實際付款人，會自動計入本結算。
     </div>
   </div>
 
@@ -1416,6 +1469,13 @@
             <option value="其他">📦 其他</option>
           </select>
         </div>
+        <div class="bf-group">
+          <label>付款人</label>
+          <select id="inp-payer">
+            <option value="我">🧑 我</option>
+            <option value="女友">👧 女友</option>
+          </select>
+        </div>
         <div class="bf-group" style="justify-content:flex-end;">
           <label>&nbsp;</label>
           <button class="btn-add" onclick="addExpense()">＋ 新增</button>
@@ -1436,6 +1496,7 @@
               <th>日期</th>
               <th>類別</th>
               <th>說明</th>
+              <th>付款人</th>
               <th>金額</th>
               <th>折合台幣</th>
               <th></th>
@@ -1715,6 +1776,13 @@ const CAT_STYLE = {
 const CAT_ICON = {
   '交通':'🚌','住宿':'🏨','餐飲':'🍜','景點':'🎫','購物':'🛍️','郵輪':'🚢','其他':'📦'
 };
+const PAYER_STYLE = {
+  '我':   { bg:'#eaf2fb', color:'#2471a3', icon:'🧑' },
+  '女友': { bg:'#f8f0ff', color:'#8e44ad', icon:'👧' },
+};
+// 已確認費用中，屬於「共同分攤」的部分（不含各付各的保險 NT$1,296）
+const FIXED_PAID_BY_GF = 2045 + 3318 + 22800; // Pistachio + JADE BOUTIQUE + 機票
+const FIXED_PAID_BY_ME = 886 + 3150 + 3189 + 7902; // DE MONG + Maison Julie + 交通 + 郵輪
 
 function loadExpenses() {
   try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || []; }
@@ -1736,11 +1804,12 @@ function addExpense() {
   const amt  = parseFloat(document.getElementById('inp-amt').value);
   const cur  = document.getElementById('inp-cur').value;
   const cat  = document.getElementById('inp-cat').value;
+  const payer = document.getElementById('inp-payer').value;
   if (!date) { errEl.textContent = '請選擇日期'; errEl.style.display='block'; return; }
   if (!desc) { errEl.textContent = '請輸入說明'; errEl.style.display='block'; return; }
   if (!amt || amt <= 0) { errEl.textContent = '請輸入有效金額'; errEl.style.display='block'; return; }
   const list = loadExpenses();
-  list.unshift({ id: Date.now(), date, desc, amt, cur, cat });
+  list.unshift({ id: Date.now(), date, desc, amt, cur, cat, payer });
   saveExpenses(list);
   document.getElementById('inp-desc').value = '';
   document.getElementById('inp-amt').value  = '';
@@ -1771,11 +1840,13 @@ function renderExpenses() {
     tbody.innerHTML = list.map(e => {
       const twd = toTWD(e.amt, e.cur);
       const st  = CAT_STYLE[e.cat] || CAT_STYLE['其他'];
+      const pst = PAYER_STYLE[e.payer] || PAYER_STYLE['我'];
       const showTwd = e.cur !== 'TWD';
       return `<tr>
         <td style="white-space:nowrap;color:#888;font-size:12px;">${e.date}</td>
         <td><span class="exp-cat-badge" style="background:${st.bg};color:${st.color};">${CAT_ICON[e.cat]||''} ${e.cat}</span></td>
         <td>${e.desc}</td>
+        <td><span class="exp-cat-badge" style="background:${pst.bg};color:${pst.color};">${pst.icon} ${e.payer || '我'}</span></td>
         <td><div class="exp-amt">${fmtAmt(e.amt, e.cur)}</div>${showTwd?`<div class="exp-twd">≈ NT$ ${twd.toLocaleString()}</div>`:''}</td>
         <td style="font-weight:700;color:#8e44ad;">NT$ ${twd.toLocaleString()}</td>
         <td><button class="btn-del" onclick="deleteExpense(${e.id})">✕</button></td>
@@ -1803,6 +1874,34 @@ function renderExpenses() {
 
   document.getElementById('grand-total').textContent =
     'NT$ ' + (expenseTotal + FLIGHT_COST).toLocaleString();
+
+  updateSettlement(list);
+}
+
+function updateSettlement(list) {
+  let dynMe = 0, dynGf = 0;
+  list.forEach(e => {
+    const twd = toTWD(e.amt, e.cur);
+    if (e.payer === '女友') dynGf += twd; else dynMe += twd;
+  });
+  const totalMe = FIXED_PAID_BY_ME + dynMe;
+  const totalGf = FIXED_PAID_BY_GF + dynGf;
+  const eachShare = (totalMe + totalGf) / 2;
+  const diff = totalMe - eachShare; // > 0: 我多付了，女友該付我；< 0: 我該付女友
+
+  document.getElementById('settle-me-paid').textContent   = 'NT$ ' + Math.round(totalMe).toLocaleString();
+  document.getElementById('settle-gf-paid').textContent   = 'NT$ ' + Math.round(totalGf).toLocaleString();
+  document.getElementById('settle-each-share').textContent = 'NT$ ' + Math.round(eachShare).toLocaleString();
+
+  const absDiff = Math.round(Math.abs(diff));
+  const resultEl = document.getElementById('settle-result');
+  if (absDiff < 1) {
+    resultEl.textContent = '✅ 兩人費用已平衡，互不相欠';
+  } else if (diff > 0) {
+    resultEl.textContent = `👧 女友需支付給 🧑 我　NT$ ${absDiff.toLocaleString()}`;
+  } else {
+    resultEl.textContent = `🧑 我需支付給 👧 女友　NT$ ${absDiff.toLocaleString()}`;
+  }
 }
 
 /* ══════════════════════════════════════
