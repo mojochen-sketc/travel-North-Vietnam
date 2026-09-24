@@ -1356,6 +1356,20 @@
     </div>
 
     <div style="margin-bottom:24px;">
+      <div style="font-weight:700;color:#16a085;font-size:14px;margin-bottom:12px;">📱 網路 eSIM 費用</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px;">
+        <div class="cost-card" style="background:#e8fdf6;border:1px solid #a3e4cf;">
+          <div class="cost-label">越南 eSIM（2人）</div>
+          <div class="cost-amt" style="color:#16a085;">NT$ 728</div>
+          <span class="payer-badge payer-me">🧑 我已付</span>
+        </div>
+      </div>
+      <div class="cost-subtotal" style="color:#16a085;">
+        eSIM 小計：<strong style="font-size:16px;">NT$ 728</strong>
+      </div>
+    </div>
+
+    <div style="margin-bottom:24px;">
       <div style="font-weight:700;color:#117864;font-size:14px;margin-bottom:12px;">🚢 郵輪費用</div>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px;">
         <div class="cost-card" style="background:#eafaf6;border:1px solid #a3e4d7;">
@@ -1408,7 +1422,7 @@
 
     <div style="background:linear-gradient(135deg,#0d2b1f,#0f5c3c);color:white;border-radius:14px;padding:24px;text-align:center;">
       <div style="font-size:13px;opacity:.65;letter-spacing:2px;margin-bottom:10px;">✈ 目前已確認費用（2人）</div>
-      <div style="font-size:42px;font-weight:800;color:#d4a017;line-height:1;">NT$ 45,849</div>
+      <div style="font-size:42px;font-weight:800;color:#d4a017;line-height:1;">NT$ 46,577</div>
       <div style="margin-top:10px;font-size:12px;opacity:.55;">餐飲 / 景點等費用請於「旅行記帳」分頁持續記錄</div>
     </div>
   </div>
@@ -1470,8 +1484,8 @@
         </div>
         <div class="budget-total-card">
           <div class="bt-label">旅遊總花費（TWD · 2人）</div>
-          <div class="bt-amt" id="grand-total">NT$ 45,849</div>
-          <div class="bt-sub">含機票 NT$22,800 + 交通 NT$3,189 + 住宿 NT$9,399 + 郵輪 NT$7,902 + 按摩 NT$1,263 + 保險 NT$1,296</div>
+          <div class="bt-amt" id="grand-total">NT$ 46,577</div>
+          <div class="bt-sub">含機票 NT$22,800 + 交通 NT$3,189 + 住宿 NT$9,399 + eSIM NT$728 + 郵輪 NT$7,902 + 按摩 NT$1,263 + 保險 NT$1,296</div>
         </div>
       </div>
       <div class="budget-cat-grid" id="cat-summary"></div>
@@ -1812,7 +1826,7 @@ function jumpTo(id) {
    旅行記帳功能
    ══════════════════════════════════════ */
 const STORAGE_KEY = 'vietnam2026_expenses';
-const FLIGHT_COST = 45849; // 2人機票 NT$22,800 + 夜臥巴士(去) NT$947 + 夜臥巴士(回) NT$902 + 高鐵(彰化→桃園) NT$1,340 + Pistachio住宿 NT$2,045 + DE MONG SAPA住宿 NT$886 + Maison Julie Duong住宿 NT$3,150 + JADE BOUTIQUE HOTEL住宿 NT$3,318 + 下龍灣郵輪 NT$7,902 + Orient Spa按摩 NT$1,263 + 旅平險 NT$1,296
+const FLIGHT_COST = 46577; // 2人機票 NT$22,800 + 夜臥巴士(去) NT$947 + 夜臥巴士(回) NT$902 + 高鐵(彰化→桃園) NT$1,340 + Pistachio住宿 NT$2,045 + DE MONG SAPA住宿 NT$886 + Maison Julie Duong住宿 NT$3,150 + JADE BOUTIQUE HOTEL住宿 NT$3,318 + eSIM NT$728 + 下龍灣郵輪 NT$7,902 + Orient Spa按摩 NT$1,263 + 旅平險 NT$1,296
 const RATE = { VND: 1/810, TWD: 1, USD: 33 };
 const CAT_STYLE = {
   '交通': { bg:'#fde8c0', color:'#7d4f00' },
@@ -1832,7 +1846,7 @@ const PAYER_STYLE = {
 };
 // 已確認費用中，屬於「共同分攤」的部分（不含各付各的保險 NT$1,296）
 const FIXED_PAID_BY_GF = 2045 + 3318 + 22800; // Pistachio + JADE BOUTIQUE + 機票
-const FIXED_PAID_BY_ME = 886 + 3150 + 3189 + 7902 + 551 + 712; // DE MONG + Maison Julie + 交通 + 郵輪 + Orient Spa（我+女友，我已付）
+const FIXED_PAID_BY_ME = 886 + 3150 + 3189 + 7902 + 551 + 712 + 728; // DE MONG + Maison Julie + 交通 + 郵輪 + Orient Spa（我+女友，我已付）+ eSIM
 // 800 美金零用現金水位（DE MONG SAPA、Maison Julie Duong 已預先從此筆現金支出）
 const CASH_FUND_USD = 800;
 const FIXED_CASH_USED_TWD = 886 + 3150; // DE MONG SAPA + Maison Julie Duong
