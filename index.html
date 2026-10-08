@@ -1406,6 +1406,21 @@
     </div>
 
     <div style="margin-bottom:24px;">
+      <div style="font-weight:700;color:#e67e22;font-size:14px;margin-bottom:12px;">💵 現場零星現金消費</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px;">
+        <div class="cost-card" style="background:#fff8f0;border:1px solid #ffe0b2;">
+          <div class="cost-label">餐飲 / 門票 / 交通 / 購物等（未逐筆記帳）</div>
+          <div class="cost-sub">依回國後越南盾餘額回推：兌換 US$400 × 32 － 剩餘 NT$750</div>
+          <div class="cost-amt" style="color:#e67e22;">NT$ 8,014</div>
+          <span class="payer-badge payer-me">🧑 我已付（800美金零用金）</span>
+        </div>
+      </div>
+      <div class="cost-subtotal" style="color:#e67e22;">
+        現場現金小計：<strong style="font-size:16px;">NT$ 8,014</strong>
+      </div>
+    </div>
+
+    <div style="margin-bottom:24px;">
       <div style="font-weight:700;color:#8e44ad;font-size:14px;margin-bottom:12px;">🛡️ 保險費用</div>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px;">
         <div class="cost-card" style="background:#f8f0ff;border:1px solid #e0c6f5;">
@@ -1422,7 +1437,7 @@
 
     <div style="background:linear-gradient(135deg,#0d2b1f,#0f5c3c);color:white;border-radius:14px;padding:24px;text-align:center;">
       <div style="font-size:13px;opacity:.65;letter-spacing:2px;margin-bottom:10px;">✈ 目前已確認費用（2人）</div>
-      <div style="font-size:42px;font-weight:800;color:#d4a017;line-height:1;">NT$ 46,577</div>
+      <div style="font-size:42px;font-weight:800;color:#d4a017;line-height:1;">NT$ 54,591</div>
       <div style="margin-top:10px;font-size:12px;opacity:.55;">餐飲 / 景點等費用請於「旅行記帳」分頁持續記錄</div>
     </div>
   </div>
@@ -1447,7 +1462,7 @@
     </div>
 
     <div style="background:#fff8f0;border:1px solid #ffe0b2;border-radius:12px;padding:16px;margin-bottom:16px;">
-      <div style="font-weight:700;color:#e67e22;font-size:14px;margin-bottom:10px;">💵 800 美金零用現金水位</div>
+      <div style="font-weight:700;color:#e67e22;font-size:14px;margin-bottom:10px;">💵 800 美金零用現金結算（已回國）</div>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:12px;text-align:center;">
         <div>
           <div style="font-size:11px;color:#999;">總額</div>
@@ -1458,11 +1473,14 @@
           <div style="font-size:16px;font-weight:700;color:#c0392b;" id="cash-used">US$ 0.00</div>
         </div>
         <div>
-          <div style="font-size:11px;color:#999;">剩餘可用</div>
+          <div style="font-size:11px;color:#999;">結算剩餘</div>
           <div style="font-size:16px;font-weight:700;color:#1b8a5a;" id="cash-remain">US$ 800.00</div>
         </div>
       </div>
-      <div style="text-align:right;font-size:11px;color:#bbb;margin-top:8px;" id="cash-remain-twd">≈ NT$ 26,400</div>
+      <div style="text-align:right;font-size:11px;color:#bbb;margin-top:8px;" id="cash-remain-twd">≈ NT$ 25,600</div>
+      <div style="font-size:11px;color:#aaa;margin-top:10px;line-height:1.8;">
+        實際兌換 US$400 → VND（匯率約 1:25,900）；未兌換 US$400 原幣帶回。回國後越南盾餘額約 NT$750，回推兌換部分實際花用約 NT$12,050（已換算為現場零星現金消費列入費用概算）。
+      </div>
     </div>
 
     <div style="background:linear-gradient(135deg,#0d2b1f,#0f5c3c);color:white;border-radius:14px;padding:20px 24px;text-align:center;">
@@ -1484,8 +1502,8 @@
         </div>
         <div class="budget-total-card">
           <div class="bt-label">旅遊總花費（TWD · 2人）</div>
-          <div class="bt-amt" id="grand-total">NT$ 46,577</div>
-          <div class="bt-sub">含機票 NT$22,800 + 交通 NT$3,189 + 住宿 NT$9,399 + eSIM NT$728 + 郵輪 NT$7,902 + 按摩 NT$1,263 + 保險 NT$1,296</div>
+          <div class="bt-amt" id="grand-total">NT$ 54,591</div>
+          <div class="bt-sub">含機票 NT$22,800 + 交通 NT$3,189 + 住宿 NT$9,399 + eSIM NT$728 + 郵輪 NT$7,902 + 按摩 NT$1,263 + 現場現金 NT$8,014 + 保險 NT$1,296</div>
         </div>
       </div>
       <div class="budget-cat-grid" id="cat-summary"></div>
@@ -1574,7 +1592,7 @@
       </div>
     </div>
     <div style="margin-top:12px;font-size:12px;color:#bbb;text-align:right;padding-right:4px;">
-      換算匯率參考：1 TWD ≈ 810 VND · 1 USD ≈ 33 TWD
+      換算匯率參考（依實際兌換結果）：1 USD ≈ 32 TWD · 1 USD ≈ 25,900 VND（約 1 TWD ≈ 809 VND）
     </div>
   </div>
 
@@ -1827,8 +1845,8 @@ function jumpTo(id) {
    旅行記帳功能
    ══════════════════════════════════════ */
 const STORAGE_KEY = 'vietnam2026_expenses';
-const FLIGHT_COST = 46577; // 2人機票 NT$22,800 + 夜臥巴士(去) NT$947 + 夜臥巴士(回) NT$902 + 高鐵(彰化→桃園) NT$1,340 + Pistachio住宿 NT$2,045 + DE MONG SAPA住宿 NT$886 + Maison Julie Duong住宿 NT$3,150 + JADE BOUTIQUE HOTEL住宿 NT$3,318 + eSIM NT$728 + 下龍灣郵輪 NT$7,902 + Orient Spa按摩 NT$1,263 + 旅平險 NT$1,296
-const RATE = { VND: 1/810, TWD: 1, USD: 33 };
+const FLIGHT_COST = 54591; // 2人機票 NT$22,800 + 夜臥巴士(去) NT$947 + 夜臥巴士(回) NT$902 + 高鐵(彰化→桃園) NT$1,340 + Pistachio住宿 NT$2,045 + DE MONG SAPA住宿 NT$886 + Maison Julie Duong住宿 NT$3,150 + JADE BOUTIQUE HOTEL住宿 NT$3,318 + eSIM NT$728 + 下龍灣郵輪 NT$7,902 + Orient Spa按摩 NT$1,263 + 現場零星現金消費 NT$8,014 + 旅平險 NT$1,296
+const RATE = { VND: 32/25900, TWD: 1, USD: 32 }; // 實際兌換匯率：1 USD ≈ 32 TWD、1 USD ≈ 25,900 VND
 const CAT_STYLE = {
   '交通': { bg:'#fde8c0', color:'#7d4f00' },
   '住宿': { bg:'#d4edda', color:'#155724' },
@@ -1847,10 +1865,12 @@ const PAYER_STYLE = {
 };
 // 已確認費用中，屬於「共同分攤」的部分（不含各付各的保險 NT$1,296）
 const FIXED_PAID_BY_GF = 2045 + 3318 + 22800; // Pistachio + JADE BOUTIQUE + 機票
-const FIXED_PAID_BY_ME = 886 + 3150 + 3189 + 7902 + 551 + 712 + 728; // DE MONG + Maison Julie + 交通 + 郵輪 + Orient Spa（我+女友，我已付）+ eSIM
+const FIXED_PAID_BY_ME = 886 + 3150 + 3189 + 7902 + 551 + 712 + 728 + 8014; // DE MONG + Maison Julie + 交通 + 郵輪 + Orient Spa（我+女友，我已付）+ eSIM + 現場零星現金消費
 // 800 美金零用現金水位（DE MONG SAPA、Maison Julie Duong 已預先從此筆現金支出）
 const CASH_FUND_USD = 800;
-const FIXED_CASH_USED_TWD = 886 + 3150; // DE MONG SAPA + Maison Julie Duong
+// 實際兌換 US$400（匯率約1:25,900），回國後越南盾餘額約NT$750，回推兌換部分實際花用 400*32-750=NT$12,050
+// 其中 DE MONG SAPA(886) + Maison Julie Duong(3150) = 4,036 已單獨列為住宿費用，其餘 8,014 列為現場零星現金消費
+const FIXED_CASH_USED_TWD = 400 * 32 - 750; // = 12,050
 
 function loadExpenses() {
   try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || []; }
