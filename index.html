@@ -1565,6 +1565,10 @@
         <input type="checkbox" id="inp-cash" style="width:15px;height:15px;" />
         💵 此筆從隨身 800 美金現金支付
       </label>
+      <label style="display:flex;align-items:center;gap:6px;font-size:12px;color:#888;margin-top:6px;cursor:pointer;">
+        <input type="checkbox" id="inp-personal" style="width:15px;height:15px;" />
+        🙅 此筆為個人消費（不分攤，不計入分帳結算）
+      </label>
       <div id="form-error" style="font-size:12px;color:#e74c3c;margin-top:8px;display:none;"></div>
     </div>
 
@@ -1882,8 +1886,8 @@ const DEFAULT_EXPENSES = [
   { id: 1007002, date:'2026-10-07', desc:'高鐵',           amt:1040,   cur:'TWD', cat:'交通', payer:'我', cash:false },
   { id: 1007001, date:'2026-10-07', desc:'機場grab',       amt:385,    cur:'TWD', cat:'交通', payer:'我', cash:false },
   { id: 1006004, date:'2026-10-06', desc:'伴手禮',         amt:239000, cur:'VND', cat:'購物', payer:'我', cash:true  },
-  { id: 1006003, date:'2026-10-06', desc:'香水',           amt:550,    cur:'TWD', cat:'購物', payer:'我', cash:false },
-  { id: 1006002, date:'2026-10-06', desc:'畫',             amt:427,    cur:'TWD', cat:'購物', payer:'我', cash:false },
+  { id: 1006003, date:'2026-10-06', desc:'香水',           amt:550,    cur:'TWD', cat:'購物', payer:'我', cash:false, personal:true },
+  { id: 1006002, date:'2026-10-06', desc:'畫',             amt:427,    cur:'TWD', cat:'購物', payer:'我', cash:false, personal:true },
   { id: 1005001, date:'2026-10-05', desc:'伴手禮',         amt:357000, cur:'VND', cat:'購物', payer:'我', cash:true  },
   { id: 1003008, date:'2026-10-03', desc:'晚餐普通煎餅',   amt:280000, cur:'VND', cat:'餐飲', payer:'我', cash:true  },
   { id: 1003007, date:'2026-10-03', desc:'晚餐法棍',       amt:50000,  cur:'VND', cat:'餐飲', payer:'我', cash:true  },
@@ -1934,15 +1938,17 @@ function addExpense() {
   const cat  = document.getElementById('inp-cat').value;
   const payer = document.getElementById('inp-payer').value;
   const cash  = document.getElementById('inp-cash').checked;
+  const personal = document.getElementById('inp-personal').checked;
   if (!date) { errEl.textContent = '請選擇日期'; errEl.style.display='block'; return; }
   if (!desc) { errEl.textContent = '請輸入說明'; errEl.style.display='block'; return; }
   if (!amt || amt <= 0) { errEl.textContent = '請輸入有效金額'; errEl.style.display='block'; return; }
   const list = loadExpenses();
-  list.unshift({ id: Date.now(), date, desc, amt, cur, cat, payer, cash });
+  list.unshift({ id: Date.now(), date, desc, amt, cur, cat, payer, cash, personal });
   saveExpenses(list);
   document.getElementById('inp-desc').value = '';
   document.getElementById('inp-amt').value  = '';
   document.getElementById('inp-cash').checked = false;
+  document.getElementById('inp-personal').checked = false;
   renderExpenses();
 }
 
@@ -1976,7 +1982,7 @@ function renderExpenses() {
         <td style="white-space:nowrap;color:#888;font-size:12px;">${e.date}</td>
         <td><span class="exp-cat-badge" style="background:${st.bg};color:${st.color};">${CAT_ICON[e.cat]||''} ${e.cat}</span></td>
         <td>${e.desc}</td>
-        <td><span class="exp-cat-badge" style="background:${pst.bg};color:${pst.color};">${pst.icon} ${e.payer || '我'}${e.cash ? ' 💵' : ''}</span></td>
+        <td><span class="exp-cat-badge" style="background:${pst.bg};color:${pst.color};">${pst.icon} ${e.payer || '我'}${e.cash ? ' 💵' : ''}${e.personal ? ' 🙅' : ''}</span></td>
         <td><div class="exp-amt">${fmtAmt(e.amt, e.cur)}</div>${showTwd?`<div class="exp-twd">≈ NT$ ${twd.toLocaleString()}</div>`:''}</td>
         <td style="font-weight:700;color:#8e44ad;">NT$ ${twd.toLocaleString()}</td>
         <td><button class="btn-del" onclick="deleteExpense(${e.id})">✕</button></td>
@@ -2011,6 +2017,7 @@ function renderExpenses() {
 function updateSettlement(list) {
   let dynMe = 0, dynGf = 0;
   list.forEach(e => {
+    if (e.personal) return; // 個人消費不分攤，不計入分帳結算
     const twd = toTWD(e.amt, e.cur);
     if (e.payer === '女友') dynGf += twd; else dynMe += twd;
   });
