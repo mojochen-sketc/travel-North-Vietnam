@@ -1406,17 +1406,20 @@
     </div>
 
     <div style="margin-bottom:24px;">
-      <div style="font-weight:700;color:#e67e22;font-size:14px;margin-bottom:12px;">💵 現場零星現金消費</div>
+      <div style="font-weight:700;color:#e67e22;font-size:14px;margin-bottom:12px;">💵 現金支出殘值（未留明細）</div>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px;">
         <div class="cost-card" style="background:#fff8f0;border:1px solid #ffe0b2;">
-          <div class="cost-label">餐飲 / 門票 / 交通 / 購物等（未逐筆記帳）</div>
-          <div class="cost-sub">依回國後越南盾餘額回推：兌換 US$400 × 32 － 剩餘 NT$750</div>
-          <div class="cost-amt" style="color:#e67e22;">NT$ 8,014</div>
+          <div class="cost-label">零錢 / 小額消費等（未逐筆記帳）</div>
+          <div class="cost-sub">兌換 US$400×32 － 剩餘NT$750 － 住宿現金NT$4,036 － 「旅行記帳」已記錄現金消費</div>
+          <div class="cost-amt" style="color:#e67e22;">NT$ 3,617</div>
           <span class="payer-badge payer-me">🧑 我已付（800美金零用金）</span>
         </div>
       </div>
       <div class="cost-subtotal" style="color:#e67e22;">
-        現場現金小計：<strong style="font-size:16px;">NT$ 8,014</strong>
+        殘值小計：<strong style="font-size:16px;">NT$ 3,617</strong>
+      </div>
+      <div style="font-size:11px;color:#bbb;margin-top:6px;">
+        已逐筆記錄的現場花費（餐飲/交通/景點/購物等）請見下方「旅行記帳」明細，會自動加總進旅遊總花費。
       </div>
     </div>
 
@@ -1436,9 +1439,9 @@
     </div>
 
     <div style="background:linear-gradient(135deg,#0d2b1f,#0f5c3c);color:white;border-radius:14px;padding:24px;text-align:center;">
-      <div style="font-size:13px;opacity:.65;letter-spacing:2px;margin-bottom:10px;">✈ 目前已確認費用（2人）</div>
-      <div style="font-size:42px;font-weight:800;color:#d4a017;line-height:1;">NT$ 54,591</div>
-      <div style="margin-top:10px;font-size:12px;opacity:.55;">餐飲 / 景點等費用請於「旅行記帳」分頁持續記錄</div>
+      <div style="font-size:13px;opacity:.65;letter-spacing:2px;margin-bottom:10px;">✈ 固定費用小計（2人）</div>
+      <div style="font-size:42px;font-weight:800;color:#d4a017;line-height:1;">NT$ 50,194</div>
+      <div style="margin-top:10px;font-size:12px;opacity:.55;">餐飲 / 景點 / 購物等現場花費請見下方「旅行記帳」明細</div>
     </div>
   </div>
 
@@ -1479,7 +1482,7 @@
       </div>
       <div style="text-align:right;font-size:11px;color:#bbb;margin-top:8px;" id="cash-remain-twd">≈ NT$ 25,600</div>
       <div style="font-size:11px;color:#aaa;margin-top:10px;line-height:1.8;">
-        實際兌換 US$400 → VND（匯率約 1:25,900）；未兌換 US$400 原幣帶回。回國後越南盾餘額約 NT$750，回推兌換部分實際花用約 NT$12,050（已換算為現場零星現金消費列入費用概算）。
+        實際兌換 US$400 → VND（匯率約 1:25,900）；未兌換 US$400 原幣帶回。回國後越南盾餘額約 NT$750，回推兌換部分實際花用約 NT$12,050：其中 NT$4,036 為住宿現金、約 NT$4,397 已於「旅行記帳」留有明細，其餘 NT$3,617 為未留明細的殘值。
       </div>
     </div>
 
@@ -1488,7 +1491,7 @@
       <div id="settle-result" style="font-size:20px;font-weight:800;color:#d4a017;">—</div>
     </div>
     <div style="margin-top:12px;font-size:12px;color:#bbb;">
-      保險費用（各付 NT$648）不計入分帳；DE MONG SAPA、Maison Julie Duong 已預先計入現金支出。「旅行記帳」新增花費時勾選「以800美金現金支付」，會自動計入現金水位。
+      保險費用（各付 NT$648）不計入分帳；「旅行記帳」已還原 9/29–10/7 完整花費紀錄（27筆，我已付），會自動計入分帳與現金水位。新增花費時勾選「以800美金現金支付」可持續累計現金水位。
     </div>
   </div>
 
@@ -1502,8 +1505,8 @@
         </div>
         <div class="budget-total-card">
           <div class="bt-label">旅遊總花費（TWD · 2人）</div>
-          <div class="bt-amt" id="grand-total">NT$ 54,591</div>
-          <div class="bt-sub">含機票 NT$22,800 + 交通 NT$3,189 + 住宿 NT$9,399 + eSIM NT$728 + 郵輪 NT$7,902 + 按摩 NT$1,263 + 現場現金 NT$8,014 + 保險 NT$1,296</div>
+          <div class="bt-amt" id="grand-total">NT$ 61,597</div>
+          <div class="bt-sub">固定費用 NT$50,194（機票+交通+住宿+eSIM+郵輪+按摩+現金殘值+保險）＋「旅行記帳」現場花費明細 NT$11,403</div>
         </div>
       </div>
       <div class="budget-cat-grid" id="cat-summary"></div>
@@ -1845,7 +1848,7 @@ function jumpTo(id) {
    旅行記帳功能
    ══════════════════════════════════════ */
 const STORAGE_KEY = 'vietnam2026_expenses';
-const FLIGHT_COST = 54591; // 2人機票 NT$22,800 + 夜臥巴士(去) NT$947 + 夜臥巴士(回) NT$902 + 高鐵(彰化→桃園) NT$1,340 + Pistachio住宿 NT$2,045 + DE MONG SAPA住宿 NT$886 + Maison Julie Duong住宿 NT$3,150 + JADE BOUTIQUE HOTEL住宿 NT$3,318 + eSIM NT$728 + 下龍灣郵輪 NT$7,902 + Orient Spa按摩 NT$1,263 + 現場零星現金消費 NT$8,014 + 旅平險 NT$1,296
+const FLIGHT_COST = 50194; // 2人機票 NT$22,800 + 夜臥巴士(去) NT$947 + 夜臥巴士(回) NT$902 + 高鐵(彰化→桃園) NT$1,340 + Pistachio住宿 NT$2,045 + DE MONG SAPA住宿 NT$886 + Maison Julie Duong住宿 NT$3,150 + JADE BOUTIQUE HOTEL住宿 NT$3,318 + eSIM NT$728 + 下龍灣郵輪 NT$7,902 + Orient Spa按摩 NT$1,263 + 現金支出殘值 NT$3,617 + 旅平險 NT$1,296（實際現場花費明細見下方旅行記帳）
 const RATE = { VND: 32/25900, TWD: 1, USD: 32 }; // 實際兌換匯率：1 USD ≈ 32 TWD、1 USD ≈ 25,900 VND
 const CAT_STYLE = {
   '交通': { bg:'#fde8c0', color:'#7d4f00' },
@@ -1865,16 +1868,53 @@ const PAYER_STYLE = {
 };
 // 已確認費用中，屬於「共同分攤」的部分（不含各付各的保險 NT$1,296）
 const FIXED_PAID_BY_GF = 2045 + 3318 + 22800; // Pistachio + JADE BOUTIQUE + 機票
-const FIXED_PAID_BY_ME = 886 + 3150 + 3189 + 7902 + 551 + 712 + 728 + 8014; // DE MONG + Maison Julie + 交通 + 郵輪 + Orient Spa（我+女友，我已付）+ eSIM + 現場零星現金消費
+const FIXED_PAID_BY_ME = 886 + 3150 + 3189 + 7902 + 551 + 712 + 728 + 3617; // DE MONG + Maison Julie + 交通 + 郵輪 + Orient Spa（我+女友，我已付）+ eSIM + 現金支出殘值（旅行記帳內的現場花費由 dynMe 自動加總，不重複計入）
 // 800 美金零用現金水位（DE MONG SAPA、Maison Julie Duong 已預先從此筆現金支出）
 const CASH_FUND_USD = 800;
 // 實際兌換 US$400（匯率約1:25,900），回國後越南盾餘額約NT$750，回推兌換部分實際花用 400*32-750=NT$12,050
-// 其中 DE MONG SAPA(886) + Maison Julie Duong(3150) = 4,036 已單獨列為住宿費用，其餘 8,014 列為現場零星現金消費
-const FIXED_CASH_USED_TWD = 400 * 32 - 750; // = 12,050
+// 其中 DE MONG SAPA(886)+Maison Julie Duong(3150)=4,036 已列為住宿費用；旅行記帳已記錄的現金消費由 dynCashTWD 動態加總；
+// 剩餘 3,617 為未留明細的殘值（零錢/小額消費等）
+const FIXED_CASH_USED_TWD = 886 + 3150 + 3617; // = 7,653（+ dynCashTWD ≈ 12,050）
+
+// 回國後依手機瀏覽器找回的完整花費紀錄（2026/9/29–10/7），作為預設資料
+// 供任何瀏覽器/裝置開啟本頁時自動還原，避免 localStorage 清除後紀錄遺失
+const DEFAULT_EXPENSES = [
+  { id: 1007002, date:'2026-10-07', desc:'高鐵',           amt:1040,   cur:'TWD', cat:'交通', payer:'我', cash:false },
+  { id: 1007001, date:'2026-10-07', desc:'機場grab',       amt:385,    cur:'TWD', cat:'交通', payer:'我', cash:false },
+  { id: 1006004, date:'2026-10-06', desc:'伴手禮',         amt:239000, cur:'VND', cat:'購物', payer:'我', cash:true  },
+  { id: 1006003, date:'2026-10-06', desc:'香水',           amt:550,    cur:'TWD', cat:'購物', payer:'我', cash:false },
+  { id: 1006002, date:'2026-10-06', desc:'畫',             amt:427,    cur:'TWD', cat:'購物', payer:'我', cash:false },
+  { id: 1005001, date:'2026-10-05', desc:'伴手禮',         amt:357000, cur:'VND', cat:'購物', payer:'我', cash:true  },
+  { id: 1003008, date:'2026-10-03', desc:'晚餐普通煎餅',   amt:280000, cur:'VND', cat:'餐飲', payer:'我', cash:true  },
+  { id: 1003007, date:'2026-10-03', desc:'晚餐法棍',       amt:50000,  cur:'VND', cat:'餐飲', payer:'我', cash:true  },
+  { id: 1003006, date:'2026-10-03', desc:'Grab',           amt:63,     cur:'TWD', cat:'交通', payer:'我', cash:false },
+  { id: 1003005, date:'2026-10-03', desc:'午餐',           amt:876,    cur:'TWD', cat:'餐飲', payer:'我', cash:false },
+  { id: 1003004, date:'2026-10-03', desc:'早上咖啡廳',     amt:120000, cur:'VND', cat:'餐飲', payer:'我', cash:true  },
+  { id: 1003003, date:'2026-10-03', desc:'竹帽',           amt:30000,  cur:'VND', cat:'購物', payer:'我', cash:true  },
+  { id: 1002002, date:'2026-10-02', desc:'晚餐',           amt:567,    cur:'TWD', cat:'餐飲', payer:'我', cash:false },
+  { id: 1002001, date:'2026-10-02', desc:'下午茶法國麵包', amt:40000,  cur:'VND', cat:'餐飲', payer:'我', cash:true  },
+  { id: 1001007, date:'2026-10-01', desc:'晚餐',           amt:295000, cur:'VND', cat:'餐飲', payer:'我', cash:true  },
+  { id: 1001006, date:'2026-10-01', desc:'Grab',           amt:70000,  cur:'VND', cat:'交通', payer:'我', cash:true  },
+  { id: 1001005, date:'2026-10-01', desc:'Garb',           amt:88,     cur:'TWD', cat:'交通', payer:'我', cash:false },
+  { id: 1001004, date:'2026-10-01', desc:'午餐',           amt:520000, cur:'VND', cat:'餐飲', payer:'我', cash:true  },
+  { id: 1001003, date:'2026-10-01', desc:'Grab',           amt:109,    cur:'TWD', cat:'交通', payer:'我', cash:false },
+  { id: 1001002, date:'2026-10-01', desc:'Grab',           amt:120000, cur:'VND', cat:'交通', payer:'我', cash:true  },
+  { id: 1001001, date:'2026-10-01', desc:'滑梯門票',       amt:240000, cur:'VND', cat:'景點', payer:'我', cash:true  },
+  { id:  930006,  date:'2026-09-30', desc:'腳底按摩',       amt:300000, cur:'VND', cat:'其他', payer:'我', cash:true  },
+  { id:  930005,  date:'2026-09-30', desc:'下午茶',         amt:185000, cur:'VND', cat:'餐飲', payer:'我', cash:true  },
+  { id:  930004,  date:'2026-09-30', desc:'咖啡廳午餐',     amt:405000, cur:'VND', cat:'餐飲', payer:'我', cash:true  },
+  { id:  930003,  date:'2026-09-30', desc:'早餐河粉',       amt:110000, cur:'VND', cat:'餐飲', payer:'我', cash:true  },
+  { id:  929001,  date:'2026-09-29', desc:'機場晚餐',       amt:198000, cur:'VND', cat:'餐飲', payer:'我', cash:true  },
+  { id:  930001,  date:'2026-09-30', desc:'番西邦門票',     amt:2902,   cur:'TWD', cat:'景點', payer:'我', cash:false },
+];
 
 function loadExpenses() {
-  try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || []; }
-  catch { return []; }
+  try {
+    const stored = localStorage.getItem(STORAGE_KEY);
+    if (stored) return JSON.parse(stored);
+  } catch {}
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(DEFAULT_EXPENSES)); } catch {}
+  return DEFAULT_EXPENSES;
 }
 function saveExpenses(list) { localStorage.setItem(STORAGE_KEY, JSON.stringify(list)); }
 function toTWD(amt, cur) { return Math.round(amt * (RATE[cur] || 1)); }
