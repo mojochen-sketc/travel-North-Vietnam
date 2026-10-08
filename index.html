@@ -1513,7 +1513,10 @@
     </div>
 
     <div class="budget-form-card" style="margin-top:16px;">
-      <div class="budget-form-title">＋ 新增花費</div>
+      <div style="display:flex;align-items:center;justify-content:space-between;">
+        <div class="budget-form-title" id="form-title" style="margin-bottom:14px;">＋ 新增花費</div>
+        <button id="btn-cancel-edit" class="btn-clear-all" style="display:none;margin-bottom:14px;" onclick="cancelEdit()">取消編輯</button>
+      </div>
       <div class="budget-form-grid">
         <div class="bf-group">
           <label>日期</label>
@@ -1558,7 +1561,7 @@
         </div>
         <div class="bf-group" style="justify-content:flex-end;">
           <label>&nbsp;</label>
-          <button class="btn-add" onclick="addExpense()">＋ 新增</button>
+          <button class="btn-add" id="btn-submit" onclick="addExpense()">＋ 新增</button>
         </div>
       </div>
       <label style="display:flex;align-items:center;gap:6px;font-size:12px;color:#888;margin-top:10px;cursor:pointer;">
@@ -1928,6 +1931,8 @@ function fmtAmt(amt, cur) {
   return 'NT$ ' + amt.toLocaleString();
 }
 
+let editingId = null;
+
 function addExpense() {
   const errEl = document.getElementById('form-error');
   errEl.style.display = 'none';
@@ -1943,23 +1948,62 @@ function addExpense() {
   if (!desc) { errEl.textContent = '請輸入說明'; errEl.style.display='block'; return; }
   if (!amt || amt <= 0) { errEl.textContent = '請輸入有效金額'; errEl.style.display='block'; return; }
   const list = loadExpenses();
-  list.unshift({ id: Date.now(), date, desc, amt, cur, cat, payer, cash, personal });
+  if (editingId !== null) {
+    const idx = list.findIndex(e => e.id === editingId);
+    if (idx !== -1) {
+      list[idx] = { ...list[idx], date, desc, amt, cur, cat, payer, cash, personal };
+    }
+  } else {
+    list.unshift({ id: Date.now(), date, desc, amt, cur, cat, payer, cash, personal });
+  }
   saveExpenses(list);
+  resetForm();
+  renderExpenses();
+}
+
+function startEdit(id) {
+  const entry = loadExpenses().find(e => e.id === id);
+  if (!entry) return;
+  editingId = id;
+  document.getElementById('inp-date').value = entry.date;
+  document.getElementById('inp-desc').value = entry.desc;
+  document.getElementById('inp-amt').value  = entry.amt;
+  document.getElementById('inp-cur').value  = entry.cur;
+  document.getElementById('inp-cat').value  = entry.cat;
+  document.getElementById('inp-payer').value = entry.payer || '我';
+  document.getElementById('inp-cash').checked = !!entry.cash;
+  document.getElementById('inp-personal').checked = !!entry.personal;
+  document.getElementById('form-title').textContent = '✎ 編輯花費';
+  document.getElementById('btn-submit').textContent = '✎ 更新';
+  document.getElementById('btn-cancel-edit').style.display = 'inline-block';
+  document.querySelector('.budget-form-card').scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+function cancelEdit() {
+  resetForm();
+}
+
+function resetForm() {
+  editingId = null;
   document.getElementById('inp-desc').value = '';
   document.getElementById('inp-amt').value  = '';
   document.getElementById('inp-cash').checked = false;
   document.getElementById('inp-personal').checked = false;
-  renderExpenses();
+  document.getElementById('form-title').textContent = '＋ 新增花費';
+  document.getElementById('btn-submit').textContent = '＋ 新增';
+  document.getElementById('btn-cancel-edit').style.display = 'none';
 }
 
 function deleteExpense(id) {
   saveExpenses(loadExpenses().filter(e => e.id !== id));
+  if (editingId === id) resetForm();
   renderExpenses();
 }
 
 function clearAll() {
   if (!confirm('確定要清除所有花費紀錄嗎？')) return;
   saveExpenses([]);
+  resetForm();
   renderExpenses();
 }
 
@@ -1985,7 +2029,10 @@ function renderExpenses() {
         <td><span class="exp-cat-badge" style="background:${pst.bg};color:${pst.color};">${pst.icon} ${e.payer || '我'}${e.cash ? ' 💵' : ''}${e.personal ? ' 🙅' : ''}</span></td>
         <td><div class="exp-amt">${fmtAmt(e.amt, e.cur)}</div>${showTwd?`<div class="exp-twd">≈ NT$ ${twd.toLocaleString()}</div>`:''}</td>
         <td style="font-weight:700;color:#8e44ad;">NT$ ${twd.toLocaleString()}</td>
-        <td><button class="btn-del" onclick="deleteExpense(${e.id})">✕</button></td>
+        <td style="white-space:nowrap;">
+          <button class="btn-del" onclick="startEdit(${e.id})" title="編輯">✎</button>
+          <button class="btn-del" onclick="deleteExpense(${e.id})" title="刪除">✕</button>
+        </td>
       </tr>`;
     }).join('');
   }
